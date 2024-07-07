@@ -6,31 +6,45 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 22:30:57 by sede-sant         #+#    #+#             */
-/*   Updated: 2024/07/07 12:11:26 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:36:54 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_char(char c)
+/*	
+	Prints a character.
+	- ### Parameters ###
+	-	 char c: The character to print
+*/
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	print_num(int a, int b)
+/*
+	Prints the numbers from ft_print_comb2 in the specified format.
+	### Parameters ###
+	- int a: The first number
+	- int b: The second number
+*/
+void	ft_printnum(int a, int b)
 {
-	put_char(a / 10 + '0');
-	put_char(a % 10 + '0');
-	put_char(' ');
-	put_char(b / 10 + '0');
-	put_char(b % 10 + '0');
+	ft_putchar(a / 10 + '0');
+	ft_putchar(a % 10 + '0');
+	ft_putchar(' ');
+	ft_putchar(b / 10 + '0');
+	ft_putchar(b % 10 + '0');
 	if (a != 98)
 	{
-		put_char(',');
-		put_char(' ');
+		ft_putchar(',');
+		ft_putchar(' ');
 	}
 }
 
+/*
+	Prints the sequence of numbers from 00 01 to 98 99, ensuring no number is ever repeated, no matter the position.
+*/
 void	ft_print_comb2(void)
 {
 	int	a;
@@ -42,15 +56,9 @@ void	ft_print_comb2(void)
 		b = a + 1;
 		while (b <= 99)
 		{
-			print_num(a, b);
+			ft_printnum(a, b);
 			b++;
 		}
 		a++;
 	}
 }
-
-// int	main(void)
-// {
-// 	ft_print_comb2();
-// 	return (0);
-// }

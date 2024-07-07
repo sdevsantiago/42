@@ -6,29 +6,40 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:34:52 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 12:15:11 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:37:06 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_char(char c)
+/*
+	Prints a character.
+	- #### Parameters
+	-	char c: The character to print
+*/
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	print_num(char digit1, char digit2, char digit3)
+/*
+	
+*/
+void	ft_printnum(char digit1, char digit2, char digit3)
 {
-	put_char(digit1 + '0');
-	put_char(digit2 + '0');
-	put_char(digit3 + '0');
+	ft_putchar(digit1 + '0');
+	ft_putchar(digit2 + '0');
+	ft_putchar(digit3 + '0');
 	if (digit1 != 7)
 	{
-		put_char(',');
-		put_char(' ');
+		ft_putchar(',');
+		ft_putchar(' ');
 	}
 }
 
+/*
+	Prints from 012 to 789 ensuring no number is repeated even though it's in any other position.
+*/
 void	ft_print_comb(void)
 {
 	int	digit1;
@@ -44,7 +55,7 @@ void	ft_print_comb(void)
 			digit3 = digit2 + 1;
 			while (digit3 <= 9)
 			{
-				print_num(digit1, digit2, digit3);
+				ft_printnum(digit1, digit2, digit3);
 				digit3++;
 			}
 			digit2++;
@@ -52,9 +63,3 @@ void	ft_print_comb(void)
 		digit1++;
 	}
 }
-
-// int main(void)
-// {
-// 	ft_print_comb();
-// 	return 0;
-// }
