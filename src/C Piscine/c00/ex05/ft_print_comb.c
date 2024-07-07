@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:34:52 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 16:37:06 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:42:50 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	ft_printnum(char digit1, char digit2, char digit3)
 }
 
 /*
-	Prints from 012 to 789 ensuring no number is repeated even though it's in any other position.
+	Prints from 012 to 789 ensuring no number is repeated even though it's in
+	any other position.
 */
 void	ft_print_comb(void)
 {

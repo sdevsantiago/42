@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 22:30:57 by sede-sant         #+#    #+#             */
-/*   Updated: 2024/07/07 16:36:54 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:43:13 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_printnum(int a, int b)
 }
 
 /*
-	Prints the sequence of numbers from 00 01 to 98 99, ensuring no number is ever repeated, no matter the position.
+	Prints the sequence of numbers from 00 01 to 98 99, ensuring no number is
+	ever repeated, no matter the position.
 */
 void	ft_print_comb2(void)
 {
