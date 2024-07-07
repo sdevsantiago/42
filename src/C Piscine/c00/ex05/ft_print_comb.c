@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:34:52 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/03 22:32:48 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:15:11 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	print_num(char digit1, char digit2, char digit3)
 	put_char(digit3 + '0');
 	if (digit1 != 7)
 	{
-		putChar(',');
-		putChar(' ');
+		put_char(',');
+		put_char(' ');
 	}
 }
 
