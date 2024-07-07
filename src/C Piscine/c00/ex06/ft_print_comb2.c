@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 22:30:57 by sede-sant         #+#    #+#             */
-/*   Updated: 2024/07/04 06:51:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:11:26 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ void	ft_print_comb2(void)
 // 	ft_print_comb2();
 // 	return (0);
 // }
-
