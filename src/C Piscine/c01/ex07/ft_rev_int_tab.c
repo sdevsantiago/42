@@ -6,23 +6,29 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:14:53 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 13:09:00 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:02:35 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
+
+void	ft_swap(int *a, int *b)
+{
+	int	c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
+}
 
 void	ft_rev_int_tab(int *tab, int size)
 {
 	int	i;
-	int	aux;
 
 	i = 0;
 	while (i < size / 2)
 	{
-		aux = tab[i];
-		tab[i] = tab[size - 1 - i];
-		tab[size - 1 - i] = aux;
+		ft_swap(&tab[i], &tab[size - i - 1]);
 		i++;
 	}
 }
@@ -33,8 +39,9 @@ void	ft_rev_int_tab(int *tab, int size)
 // 	ft_rev_int_tab(nums, 10);
 // 	int		i = 0;
 // 	char	numero;
-// 	while (nums[i] != '\0')
+// 	while (i < 10)
 // 	{
+// 		printf("%d", nums[i]);
 // 		numero = nums[i] + '0';
 // 		write(1, &numero, 1);
 // 		i++;
