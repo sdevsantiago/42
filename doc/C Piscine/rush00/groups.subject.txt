@@ -1,0 +1,15 @@
+Toma la primera letra del login de tu líder de equipo, conviértela en un número siguiendo esta regla:
+A = 1
+B = 2
+C = 3
+D = 4
+...
+
+El enunciado que te corresponde es el que obtienes al hacer el módulo 5 del ese número:
+1 % 5 = 1 (tu enunciado es el 1)
+2 % 5 = 2 (tu enunciado es el 2)
+3 % 5 = 3 (tu enunciado es el 3)
+4 % 5 = 4 (tu enunciado es el 4)
+5 % 5 = 0 (tu enunciado es el 0)
+6 % 5 = 1 (tu enunciado es el 1)
+...
