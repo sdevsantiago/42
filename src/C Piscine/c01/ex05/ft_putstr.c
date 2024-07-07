@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:01:25 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/04 15:13:12 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:43:52 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putstr(char *str)
 	{
 		write(1, &str[i], 1);
 		i++;
-	}	
+	}
 }
 
 // int main(void)
