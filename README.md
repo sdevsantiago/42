@@ -7,3 +7,10 @@ The access method is known as the *Piscine*, in where candidates start writing t
 This repository contains my solutions to the problems found throughout the *Piscine* taken from 1st to 26th of July in Madrid ([learn more here](https://www.42madrid.com/)).
 
 `DON'T COPY, LEARN`
+
+## License
+**GNU GENERAL PUBLIC LICENSE**
+
+*Version 3, 29 June 2007*
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>. Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. [Read more here](./LICENSE)
