@@ -4,6 +4,6 @@
 
 The access method is known as the *Piscine*, in where candidates start writing their first lines of code in order to learn the basics of both Shell, C and logic programming..
 
-This repository contains my solutions to the problems found throughout the *Piscine* taken from 1st to 26th of July in Madrid (learn more![https://www.42madrid.com/](here)).
+This repository contains my solutions to the problems found throughout the *Piscine* taken from 1st to 26th of July in Madrid ([learn more here](https://www.42madrid.com/)).
 
 `DON'T COPY, LEARN`
