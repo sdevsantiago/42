@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:35:50 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 19:38:41 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:00:51 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strlowcase(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
+		if (str[i] >= 'A' && str[i] <= 'Z')
 			str[i] += 32;
 		i++;
 	}
