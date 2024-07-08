@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:48:45 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 17:08:49 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:11:46 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 	- #### Parameters
 	-	char *str: The string to evaluate
 	- #### Return
-	-	Returns 1 if the string contains only alphabetic characters, 0 if not.
+	-	Returns 1 if the string contains only alphabetic characters or if the
+		string passed is empty, if not, returns 0.
 */
 int	ft_str_is_alpha(char *str)
 {
