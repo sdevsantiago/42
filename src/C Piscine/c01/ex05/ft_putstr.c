@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:01:25 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 12:43:52 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:05:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,3 @@ void	ft_putstr(char *str)
 		i++;
 	}
 }
-
-// int main(void)
-// {
-// 	ft_putstr("Hola mundo");
-// 	return 0;
-// }

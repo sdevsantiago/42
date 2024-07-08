@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:13:56 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 15:51:14 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:05:06 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,3 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-
-// int main(void)
-// {
-// 	int length = ft_strlen("");
-// 	return 0;
-// }

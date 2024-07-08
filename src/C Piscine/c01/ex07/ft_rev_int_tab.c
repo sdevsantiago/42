@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:14:53 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/07 16:02:35 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:05:13 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,3 @@ void	ft_rev_int_tab(int *tab, int size)
 		i++;
 	}
 }
-
-// int main(void)
-// {
-// 	int	nums[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-// 	ft_rev_int_tab(nums, 10);
-// 	int		i = 0;
-// 	char	numero;
-// 	while (i < 10)
-// 	{
-// 		printf("%d", nums[i]);
-// 		numero = nums[i] + '0';
-// 		write(1, &numero, 1);
-// 		i++;
-// 	}
-// 	return 0;
-// }

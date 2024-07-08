@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 10:52:08 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/04 20:07:36 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:04:42 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,3 @@ void	ft_swap(int *a, int *b)
 	*a = *b;
 	*b = c;
 }
-
-// void    put_char(char c)
-// {
-//	write(1, &c, 1);
-// }
-
-// int main(void)
-// {
-// 	int	a;
-// 	int	b;
-
-// 	a = 42;
-// 	b = 24;
-// 	ft_swap(&a, &b);
-// 	put_char(a/10 + '0');
-// 	put_char(a%10 + '0');
-// 	put_char(b/10 + '0');
-// 	put_char(b%10 + '0');
-// 	return 0;
-// }
