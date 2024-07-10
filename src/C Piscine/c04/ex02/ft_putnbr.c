@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:09:23 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 18:04:42 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:05:11 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_putchar(char c)
 void	ft_putnbr(int nb)
 {
 	int	n;
-	
+
 	if (nb == -2147483648)
 		write(STDOUT_FILENO, "-2147483648", 11);
 	else if (nb == 0)

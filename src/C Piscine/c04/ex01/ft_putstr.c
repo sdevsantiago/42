@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:06:00 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 17:08:58 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:04:45 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 */
 void	ft_putstr(char *str)
 {
-	while(*str)
-    	write (1, str++, 1);
+	while (*str)
+		write (1, str++, 1);
 }
