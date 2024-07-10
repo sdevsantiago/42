@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:27:19 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 21:41:47 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:12:21 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 */
 int	ft_recursive_factorial(int nb)
 {
-	int	res;
-	
 	if (nb == 0)
 		return (1);
 	else if (nb < 0)
 		return (0);
-	res = nb;
 	return (nb * ft_recursive_factorial(nb - 1));
 }
+
+#include <stdio.h>
+int	main(void)
+{
+	printf("%d", ft_recursive_factorial(3));
+	return (0);
+}
+
