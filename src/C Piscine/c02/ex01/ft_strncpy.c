@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:08:15 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 21:54:24 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 08:54:36 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < n)
+	while (i <= n)
 	{
 		dest[i] = '\0';
 		i++;
