@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:18:42 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 15:00:57 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:19:32 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 	-	char *s1: The first string
 	-	char *s2: The other string
 	- #### Return
-	-	Returns 0 if both strings are equal, a negative value if the first
-		string is bigger than the second and a positive value if the second
+	-	Returns 0 if both strings are equal, a positive value if the first
+		string is bigger than the second and a negative value if the second
 		string is bigger than the first.
 */
 int	ft_strcmp(char *s1, char *s2)
@@ -27,5 +27,5 @@ int	ft_strcmp(char *s1, char *s2)
 	i = 0;
 	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
 		i++;
-	return (s2[i] - s1[i]);
+	return (s1[i] - s2[i]);
 }
