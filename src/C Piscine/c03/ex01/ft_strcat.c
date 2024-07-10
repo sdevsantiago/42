@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 05:27:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 07:24:49 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 08:02:10 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strcat(char *dest, char *src)
 {
 	unsigned int	i;
 	unsigned int	j;
-	
+
 	i = ft_strlen(dest);
 	j = 0;
 	while (src[j] != '\0')
