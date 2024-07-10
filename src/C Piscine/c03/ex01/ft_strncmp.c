@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:21:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 08:49:40 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:47:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	unsigned int	i;
 
 	i = 0;
-	while (s1[i] == s2[i] && n > 0)
+	while (s1[i] == s2[i] && n > 0 && (s1[i] != '\0' && s2[i] != '\0'))
 	{
 		i++;
 		n--;
