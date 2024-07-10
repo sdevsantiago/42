@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:48:45 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 17:11:46 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 07:40:33 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_str_is_alpha(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] < 'A' || str[i] > 'Z' && str[i] < 'a' || str[i] > 'z')
+		if ((str[i] < 'A' || str[i] > 'Z') && (str[i] < 'a' || str[i] > 'z'))
 			return (0);
 		i++;
 	}
