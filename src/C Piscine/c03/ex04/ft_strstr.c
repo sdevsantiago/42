@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 05:27:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 09:10:45 by sede-san         ###   ########.fr       */
+/*   Created: 2024/07/10 09:43:43 by sede-san          #+#    #+#             */
+/*   Updated: 2024/07/10 13:19:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,42 @@ int	ft_strlen(char *str)
 }
 
 /*
-	Concatenate two strings, appending 'dest' to 'src'.
-	- #### Parameters
-	-	char *dest: String to concatenate to
-	-	char *src: String to concatenate from
+	Locates a subtring in a string.
+	-	char *str: The string in where to search
+	-	char *to_find: The substring to search in 'str'
 	- #### Return
-	-	Returns the concatenated string.
+	-	If found, returns the substring, if not, returns NULL.
 */
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strstr(char *str, char *to_find)
 {
+	char		*null = "\0";
 	unsigned int	i;
 	unsigned int	j;
+	unsigned int	tofind_len;
 
-	i = ft_strlen(dest);
-	j = 0;
-	while (src[j] != '\0')
+	i = 0;
+	tofind_len = ft_strlen(to_find);
+	while (str[i] != '\0')
 	{
-		dest[i] = src[j];
+		while (str[i] == to_find[j])
+		{
+			i++;
+			j++;
+			if (j == tofind_len)
+				return (to_find);
+		}
+		j = 0;
 		i++;
-		j++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (null);
 }
+
+#include <unistd.h>
+int main(void)
+{
+	char	*str = "Hola ";
+	char	*to_find = " ";	
+	ft_strstr(str, to_find);
+}
+
+
