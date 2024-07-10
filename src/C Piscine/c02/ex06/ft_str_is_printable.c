@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:47:33 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 19:26:36 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/10 07:44:34 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_str_is_printable(char *str)
 	unsigned int	i;
 
 	i = 0;
-	while (str[i] < space || str[i] > tilde)
+	while (str[i] != '\0')
 	{
 		if (str[i] < space || str[i] > tilde)
 			return (0);
