@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:05:44 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/15 20:10:08 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:19:44 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ void	ft_putchar(char c)
 	write(STDOUT_FILENO, &c, 1);
 }
 
+/*
+	Gets the length of a string.
+	- #### Parameters
+	-	char *str: The string to measure.
+	- #### Return
+	-	Returns the length of the string up to the first NULL (\0) terminator.
+*/
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -32,11 +39,19 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+/*
+	Prints a string.
+	- #### Parameters
+	-	char *str: The string to print
+*/
 void	ft_putstr(char *str)
 {
 	write(STDOUT_FILENO, str, ft_strlen(str));
 }
 
+/*
+	Prints the program name.
+*/
 int	main(int argc, char *argv[])
 {
 	const char	newline = '\n';
