@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 02:06:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/15 03:29:10 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:24:58 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ int	ft_sqrt(int nb)
 		p++;
 	if (nb % p != 0)
 		return (0);
-	return (p);		
+	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:16:34 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 21:43:29 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:24:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	ft_iterative_factorial(int nb)
 {
 	int	res;
-	
+
 	if (nb == 0)
 		return (1);
 	else if (nb < 0)
