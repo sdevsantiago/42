@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:05:44 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/15 20:19:44 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:10:24 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	ft_putstr(char *str)
 int	main(int argc, char *argv[])
 {
 	const char	newline = '\n';
-	int			nargs = argc - 1;
+	int			nargs;
 
+	nargs = argc - 1;
 	ft_putstr(argv[argc - nargs - 1]);
 	ft_putchar(newline);
 	return (0);
