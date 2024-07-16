@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:21:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/16 07:21:20 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:18:10 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,4 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		n--;
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{
-	char	*s1 = "\201";
-	char	*s2 = "\101";
-	printf("Original strncmp:\t%d\n", strncmp(s1, s2, 2));
-	printf("My strncmp:\t\t%d\n", ft_strncmp(s1, s2, 2));
-	return (0);
 }
