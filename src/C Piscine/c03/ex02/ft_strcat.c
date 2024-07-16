@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 05:27:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 09:10:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:20:30 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strlen(char *str)
 }
 
 /*
-	Concatenate two strings, appending 'dest' to 'src'.
+	Concatenate two strings, appending 'src' to 'dest'.
 	- #### Parameters
 	-	char *dest: String to concatenate to
 	-	char *src: String to concatenate from

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:14:33 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 09:41:13 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:22:29 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strlen(char *str)
 }
 
 /*
-	Concatenate two strings, appending 'dest' to 'src', up to the character 'nb'.
+	Appends the first 'nb' characters of 'src' to 'dest'.
 	- #### Parameters
 	-	char *dest: String to concatenate to
 	-	char *src: String to concatenate from
