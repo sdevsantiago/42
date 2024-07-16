@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 01:56:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/16 02:54:47 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:20:28 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
+/*
+	Sorts all the strings in a matrix using the bubble sort method.
+*/
 char	**ft_sort_str_matrix_rev(char **matrix, int size)
 {
 	char	*xstr;
