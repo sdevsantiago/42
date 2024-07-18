@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 01:56:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/16 16:20:28 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/18 05:31:56 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int	ft_strcmp(char *s1, char *s2)
 
 /*
 	Sorts all the strings in a matrix using the bubble sort method.
+	- #### Parameters
+	-	char **matrix: The matrix containing the strings
+	-	int size: The amount of strings contained in 'matrix'
+	- #### Return
+	-	Returns the matrix sorted in reverse.
 */
 char	**ft_sort_str_matrix_rev(char **matrix, int size)
 {
