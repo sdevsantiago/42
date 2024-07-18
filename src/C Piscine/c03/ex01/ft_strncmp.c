@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:21:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/16 19:21:08 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/18 05:14:36 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@
 		if the first string is bigger than the second and a negative value if
 		the second string is bigger than the first.
 */
-#include <unistd.h>
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
 	unsigned int	i;
 
 	i = 0;
-	while ((s1[i] != '\0' && s2[i] != '\0') && i < n)
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0') && n > i)
 		i++;
-	}
-	return (0);
+	if (i >= n)
+		i--;
+	return (s1[i] - s2[i]);
 }
