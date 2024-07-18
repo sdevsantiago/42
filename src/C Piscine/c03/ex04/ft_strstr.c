@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:43:43 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/18 13:25:26 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:29:57 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@ char	*ft_strstr(char *str, char *to_find)
 			i++;
 			j++;
 		}
-		if (!(to_find[i]))
+		if (!(to_find[j]))
 			return (str);
-		else
-		{
-			str += i;
-			i = 0;
-			j = 0;
-		}
 		str++;
+		i = 0;
+		j = 0;
 	}
 	return (0);
 }
