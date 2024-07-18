@@ -6,64 +6,47 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:43:43 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 13:19:01 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:25:26 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-	Measures a strings length.
-	- #### Parameter
-	-	char *str: The string to measure.
-	- #### Return
-	-	Returns the length of the passed string.
-*/
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-/*
 	Locates a subtring in a string.
+	- #### Special cases
+	-	If an empty string is passed as 'to_find', the return value will be the
+		passed string
+	- #### Parameters
 	-	char *str: The string in where to search
 	-	char *to_find: The substring to search in 'str'
 	- #### Return
-	-	If found, returns the substring, if not, returns NULL.
+	-	If found, returns the string starting from the first ocurrence of
+		'to_find', else returns NULL.
 */
 char	*ft_strstr(char *str, char *to_find)
 {
-	char		*null = "\0";
 	unsigned int	i;
 	unsigned int	j;
-	unsigned int	tofind_len;
 
 	i = 0;
-	tofind_len = ft_strlen(to_find);
+	j = 0;
+	if (!(*to_find))
+		return (str);
 	while (str[i] != '\0')
 	{
-		while (str[i] == to_find[j])
+		while (str[i] == to_find[j] && (str[i] || to_find[j]))
 		{
 			i++;
 			j++;
-			if (j == tofind_len)
-				return (to_find);
 		}
-		j = 0;
-		i++;
+		if (!(to_find[i]))
+			return (str);
+		else
+		{
+			str += i;
+			i = 0;
+			j = 0;
+		}
+		str++;
 	}
-	return (null);
+	return (0);
 }
-
-#include <unistd.h>
-int main(void)
-{
-	char	*str = "Hola ";
-	char	*to_find = " ";	
-	ft_strstr(str, to_find);
-}
-
-
