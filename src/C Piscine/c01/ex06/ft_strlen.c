@@ -6,10 +6,17 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:13:56 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/08 22:05:06 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:28:58 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+	Measures a strings length.
+	- #### Parameter
+	-	char *str: The string to measure.
+	- #### Return
+	-	Returns the length of the passed string.
+*/
 int	ft_strlen(char *str)
 {
 	int	i;
