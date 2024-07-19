@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 03:18:42 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/17 16:55:03 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:07:03 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	ft_strcmp(char *s1, char *s2)
 	i = 0;
 	while (s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
 		i++;
-	return (s1[i] - s2[i]);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

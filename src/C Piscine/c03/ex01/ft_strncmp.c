@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 08:21:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/18 05:14:36 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:05:43 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		i++;
 	if (i >= n)
 		i--;
-	return (s1[i] - s2[i]);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
