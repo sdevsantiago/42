@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:41:32 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/18 20:52:38 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:54:11 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,38 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 */
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	ft_strncat(dest, src, size);
-	return (ft_strlen(dest) + ft_strlen(src) - 1);
+	// unsigned int	i;
+	//! Return value
+	unsigned int	i;
+	
+	i = ft_strlen(dest);
+	if (size <= i)
+		return (size + ft_strlen(src));
+	size -= i;
+	dest += i;
+	while (size-- > 1)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (i + size + ft_strlen(src));
 }
 
 #include <bsd/string.h>
 #include <stdio.h>
+#include <stdlib.h>
 // TODO TEST TEST TEST
 int	main(void)
 {
-	char			src1[] = "Adios";
-	char			dest1[] = "Hola";
-	char			src2[] = "Adios";
-	char			dest2[] = "Hola";
-	unsigned int	size = 3;
-	printf("Original strlcat:\t%s\t%zu\t%s\t%s\n", dest1, strlcat(dest1, src1, size), dest1, src1);
-	printf("My strlcat:\t\t%s\t%u\t%s\t%s\n", dest2, ft_strlcat(dest2, src2, size), dest2, src2);
+	char dest1[] = "prueba123";
+	char src1[] = "prueba3";
+	char dest2[] = "prueba123";
+	char src2[] = "prueba3";
+	int size = 11;
+	
+	printf("Original strlcat:\n- Original dest:\t%s\n- Function result:\t%zu\n- New dest:\t\t%s\n- New src:\t\t%s\n", dest1, strlcat(dest1, src1, size), dest1, src1);
+	printf("My strlcat:\n- Original dest:\t%s\n- Function result:\t%u\n- New dest:\t\t%s\n- New src:\t\t%s\n", dest2, ft_strlcat(dest2, src2, size), dest2, src2);
 	return (0);
 }
