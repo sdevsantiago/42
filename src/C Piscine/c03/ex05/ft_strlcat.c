@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:41:32 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:50 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:15:00 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
 	unsigned int	s;
-	
+
 	i = ft_strlen(dest);
 	s = ft_strlen(src);
 	if (size <= i)
