@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:43:32 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/22 18:06:52 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:07:37 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_putnbr_base(int nbr, char *base)
 {
 	int	base_characters;
 	int	n;
-	
+
 	if (ft_check_putnbr_base(base))
 		return ;
 	base_characters = ft_strlen(base);
