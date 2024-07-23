@@ -18,8 +18,8 @@
 | [C12]() |  |
 | [C13]() |  |
 | [Rush00](../../doc/C%20Piscine/rush00/) | not presented |
-| [Rush01]() |  |
-| [Rush02]() |  |
+| [Rush01]() | not presented |
+| [Rush02]() | not presented |
 | [BSQ]() |  |
 | Exam00 | 60% |
 | Exam01 | 100% |
