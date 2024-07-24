@@ -6,7 +6,7 @@
 | [C00](../../doc/C%20Piscine/c00/) | [70%](./c00/) |
 | [C01](../../doc/C%20Piscine/c01/) | [65%](./c01/) |
 | [C02](../../doc/C%20Piscine/c02/) | [55%](./c02/) |
-| [C03](../../doc/C%20Piscine/c03/) | [not graded yet](./c03/) |
+| [C03](../../doc/C%20Piscine/c03/) | [75%](./c03/) |
 | [C04](../../doc/C%20Piscine/c04/) | [not graded yet](./c04/) |
 | [C05](../../doc/C%20Piscine/c05/) | [not graded yet](./c05/) |
 | [C06](../../doc/C%20Piscine/c06/) | [not graded yet](./c06/) |
@@ -18,8 +18,9 @@
 | [C12]() |  |
 | [C13]() |  |
 | [Rush00](../../doc/C%20Piscine/rush00/) | not presented |
-| [Rush01]() |  |
-| [Rush02]() |  |
+| [Rush01]() | not presented |
+| [Rush02]() | not presented |
 | [BSQ]() |  |
 | Exam00 | 60% |
 | Exam01 | 100% |
+| Exam02 | 80% |
