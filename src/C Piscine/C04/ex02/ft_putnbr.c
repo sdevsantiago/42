@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:09:23 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/10 20:05:11 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:44:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ void	ft_putnbr(int nb)
 	else if (nb < 0)
 	{
 		ft_putchar('-');
-		nb = -nb;
+		ft_putnbr(-nb);
 	}
-	n = nb % 10 + '0';
-	nb /= 10;
-	if (nb > 0)
-		ft_putnbr(nb);
-	ft_putchar(n);
+	else
+	{
+		n = nb % 10 + '0';
+		nb /= 10;
+		if (nb > 0)
+			ft_putnbr(nb);
+		ft_putchar(n);
+	}
 }
