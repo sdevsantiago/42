@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:31:17 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/16 11:53:04 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:06:41 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	Creates an array with the values between 'min' and 'max', this last one
 	excluded.
 	- #### Special cases
-	-	If 'min' is higher than 'max', an empty pointer is returned.
+	-	If 'min' is higher or equal than 'max', an empty pointer is returned.
 	- #### Parameters
 	-	int min: The minimum number
 	-	int max: The maximum number excluded
@@ -29,7 +29,9 @@ int	*ft_range(int min, int max)
 	int			*arr;
 	int			i;
 
-	arr = malloc(sizeof(range));
+	if (!range)
+		return (0);
+	arr = malloc(sizeof(int) * range);
 	i = 0;
 	while (i < range)
 	{
@@ -37,12 +39,4 @@ int	*ft_range(int min, int max)
 		i++;
 	}
 	return (arr);
-}
-#include <stdio.h>
-int	main(void)
-{
-	int	*arr = ft_range(0, 10);
-	for (int i = 0; i < 10; i++)
-		printf("%d\n", arr[i]);
-	return (0);
 }
