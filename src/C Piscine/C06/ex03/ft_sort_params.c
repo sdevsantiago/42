@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 01:56:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/25 15:40:28 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:02:39 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ int	main(int argc, char *argv[])
 		write(STDOUT_FILENO, &newline, 1);
 		argv++;
 	}
-	
+	return (0);
 }
