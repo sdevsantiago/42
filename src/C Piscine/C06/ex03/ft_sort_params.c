@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 01:56:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/18 05:31:56 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:54:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,19 @@ char	**ft_sort_str_matrix_rev(char **matrix, int size)
 int	main(int argc, char *argv[])
 {
 	const char	newline = '\n';
-	char		**args;
 	int			i;
 
 	i = 1;
 	while (i <= argc - 1)
 	{
-		args[i - 1] = argv[i];
+		argv[i - 1] = argv[i];
 		i++;
 	}
 	i = 0;
-	ft_sort_str_matrix_rev(args, argc - 1);
+	ft_sort_str_matrix_rev(argv, argc - 1);
 	while (i <= argc - 2)
 	{
-		ft_putstr(args[i]);
+		ft_putstr(argv[i]);
 		write(STDOUT_FILENO, &newline, 1);
 		i++;
 	}
