@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:23:32 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/15 16:55:10 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:25:45 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_is_prime(int nb)
 {
 	int	i;
 
-	i = 2;
 	if (nb <= 1)
 		return (0);
+	i = 2;
 	while (i <= nb / 2)
 	{
 		if (nb % i == 0)
@@ -44,10 +44,7 @@ int	ft_is_prime(int nb)
 */
 int	ft_find_next_prime(int nb)
 {
-	int	i;
-
-	i = nb + 1;
-	while (!ft_is_prime(i))
-		i++;
-	return (i);
+	while (!ft_is_prime(nb))
+		nb++;
+	return (nb);
 }
