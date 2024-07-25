@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 02:06:30 by sede-san          #+#    #+#             */
-/*   Updated: 2024/07/15 16:24:58 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:14:23 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	ft_recursive_power(int nb, int power)
 */
 int	ft_sqrt(int nb)
 {
-	int	p;
+	int	i;
 
-	p = 1;
-	while (ft_recursive_power(p, 2) < nb)
-		p++;
-	if (nb % p != 0)
+	if (nb <= 0)
 		return (0);
-	return (p);
+	i = 1;
+	while (ft_recursive_power(i, 2) < nb)
+		i++;
+	if (i * i == nb)
+		return (i);
+	return (0);
 }
