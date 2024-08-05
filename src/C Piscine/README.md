@@ -18,7 +18,7 @@
 | [C12](../../doc/C%20Piscine/C12/) | [not presented](./C12/) |
 | [C13](../../doc/C%20Piscine/C13/) | [not presented](./C13/) |
 | [Rush00](../../doc/C%20Piscine/Rush00/) | not presented |
-| [Rush01](../../doc/C%20Piscine/Rush02/) | not presented |
+| [Rush01](../../doc/C%20Piscine/Rush01/) | not presented |
 | [Rush02](../../doc/C%20Piscine/Rush02/) | not presented |
 | [BSQ](../../doc/C%20Piscine/BSQ/) | not presented |
 | Exam00 | 60% |
