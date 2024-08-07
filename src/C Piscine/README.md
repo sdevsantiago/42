@@ -24,3 +24,4 @@
 | Exam00 | 60% |
 | Exam01 | 100% |
 | Exam02 | 80% |
+| Final exam | 66% |
