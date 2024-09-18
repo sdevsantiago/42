@@ -6,14 +6,14 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/17 18:39:27 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:49:32 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
+# include <stddef.h>
 
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
