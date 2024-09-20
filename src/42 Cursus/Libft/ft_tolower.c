@@ -6,15 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 19:56:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/16 21:53:34 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:40:04 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	Converts an uppercase letter to lowercase.
-*/
+/* Converts an uppercase letter to lowercase.  */
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')

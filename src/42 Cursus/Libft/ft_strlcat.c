@@ -6,15 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:59:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/19 14:05:08 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:39:39 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	Concatenates a size-bounded string.
-*/
+/* Concatenates a size-bounded string.  */
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
