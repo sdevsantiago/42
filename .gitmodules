@@ -1,0 +1,3 @@
+[submodule "utils/libft-war-machine"]
+	path = utils/libft-war-machine
+	url = https://github.com/0x050f/libft-war-machine
