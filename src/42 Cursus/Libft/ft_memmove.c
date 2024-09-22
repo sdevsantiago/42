@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 14:35:31 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/22 01:53:58 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/22 02:09:17 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	s = (char *)src;
 	d = (char *)dest;
-	if (n == 0)
-		return (dest);
 	while (n--)
 	{
 		*d = *s;
