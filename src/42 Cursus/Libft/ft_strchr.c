@@ -6,13 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 16:07:41 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/22 17:10:37 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:36:20 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Finds a character in a string.  */
+/* Finds the first ocurrence of C in the string S.  */
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
