@@ -44,6 +44,9 @@ Automatic test cases for the [C Piscine](src/C%20Piscine/) exercises.
 
 [![k11q/mini-moulinette - GitHub](https://gh-card.dev/repos/k11q/mini-moulinette.svg?fullname=)](https://github.com/k11q/mini-moulinette)
 
+-	**Want these utilities?**
+-	*Clone using the `--recurse-submodules` flag*
+
 ## ⚙️ Project information
 ![Status](https://img.shields.io/badge/Status-Active-green?style=for-the-badge&labelColor=black)
 
