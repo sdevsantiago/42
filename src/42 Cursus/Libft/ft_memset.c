@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:34:03 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/20 19:39:22 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:59:54 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	*ft_memset(void *s, int c, size_t n)
 		d[i] = c;
 		i++;
 	}
-	s = d;
+	return (s);
 }
