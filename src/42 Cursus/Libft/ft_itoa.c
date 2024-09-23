@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:09:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/23 19:38:49 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:43:07 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ size_t	count_digits(int n)
 char	*ft_itoa(int n)
 {
 	char	*s;
-	short	d;
-	
+	size_t	d;
+
 	d = count_digits(n);
-	s = ft_calloc(d, sizeof *s);
+	s = ft_calloc(d, sizeof(*s));
 	if (n == INT_MIN)
 		return ("-2147483648");
 	else if (n == 0)
