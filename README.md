@@ -10,6 +10,7 @@
 		- [🧑🏻‍💻 The Cursus](#-the-cursus)
 	- [💬 Availability](#-availability)
 	- [🧑🏻 Intra information](#-intra-information)
+	- [🪛 Utils](#-utils)
 	- [⚙️ Project information](#️-project-information)
 	- [⚖️ License](#️-license)
 
@@ -33,6 +34,15 @@ See [docs](docs) for more details.
 
 ## 🧑🏻 Intra information
 *Not available yet*
+
+## 🪛 Utils
+A useful [Libft](src/42%20Cursus/Libft/) testing tool.
+
+[![0x050f/libft-war-machine - GitHub](https://gh-card.dev/repos/0x050f/libft-war-machine.svg?fullname=)](https://github.com/0x050f/libft-war-machine)
+
+Automatic test cases for the [C Piscine](src/C%20Piscine/) exercises.
+
+[![k11q/mini-moulinette - GitHub](https://gh-card.dev/repos/k11q/mini-moulinette.svg?fullname=)](https://github.com/k11q/mini-moulinette)
 
 ## ⚙️ Project information
 ![Status](https://img.shields.io/badge/Status-Active-green?style=for-the-badge&labelColor=black)
