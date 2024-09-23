@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/22 00:43:54 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:17:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include <limits.h>
 
 // Part 1 functions
 
