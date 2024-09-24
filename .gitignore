@@ -5,3 +5,6 @@
 *.gch
 *.a
 *.o
+
+# utils/libft-war-machine
+utils/libft-war-machine/my_config.sh
