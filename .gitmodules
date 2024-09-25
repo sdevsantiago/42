@@ -1,6 +1,0 @@
-[submodule "utils/libft-war-machine"]
-	path = utils/libft-war-machine
-	url = https://github.com/0x050f/libft-war-machine
-[submodule "utils/mini-moulinette"]
-	path = utils/mini-moulinette
-	url = https://github.com/k11q/mini-moulinette
