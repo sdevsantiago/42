@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:26:16 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/20 19:39:06 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:09:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 /* Checks if the character is a white-space.  */
 int	ft_isspace(int c)
 {
-	return ((c >= '\t' && c <= '\n') || c == ' ');
+	return ((c >= '\t' && c <= '\r') || c == ' ');
 }
