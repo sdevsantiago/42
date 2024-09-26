@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 18:23:12 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/22 21:12:21 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/26 21:05:16 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	if (!(*little))
 		return ((char *)big);
-	while (big[i] != '\0' && len--)
+	while (big[i] && len--)
 	{
-		while ((big[i] == little[j]) && (big[i] || little[j]))
+		while ((big[i] == little[j]) && (big[i] || little[j]) && len--)
 		{
 			i++;
 			j++;
@@ -35,5 +35,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		i = 0;
 		j = 0;
 	}
-	return (0);
+	return (NULL);
 }
