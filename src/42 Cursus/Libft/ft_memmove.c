@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 14:35:31 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/22 16:00:16 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:12:34 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
    This function is protected against overlapping.  */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*s;
-	unsigned char	*d;
+	const unsigned char	*s = (unsigned char *)src + n - 1;
+	unsigned char		*d;
 
-	if (!((dest > src && dest < src + n) || (src > dest && src < dest + n)))
+	if (!(dest > src && dest < src + n))
 		return (ft_memcpy(dest, src, n));
-	s = (unsigned char *)src + n - 1;
 	d = (unsigned char *)dest + n - 1;
 	while (n--)
 		*d-- = *s--;
