@@ -13,6 +13,7 @@
                 "-Wall",
                 "-Wextra",
                 "-Werror",
+                "ft_strlen.c",                
             ],
             "options": {
                 "cwd": "${fileDirname}"
