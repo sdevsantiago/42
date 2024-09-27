@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/09/27 09:28:57 by sede-san         ###   ########.fr        #
+#    Updated: 2024/09/27 20:14:45 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ ft_isdigit.c \
 ft_isprint.c \
 ft_isspace.c \
 ft_itoa.c \
+ft_strjoin.c \
 ft_memcmp.c \
 ft_memcpy.c \
 ft_memchr.c \
