@@ -33,7 +33,7 @@ Documentation is available in the following languages:
 See [docs](docs) for more details.
 
 ## 🧑🏻 Intra information
-*Not available yet*
+[![sede-san's 42 stats](https://badge.mediaplus.ma/darkblue/sede-san?1337Badge=off&UM6P=off)](https://github.com/oakoudad/badge42)
 
 ## 🪛 Utils
 A useful [Libft](src/42%20Cursus/Libft/) testing tool.
