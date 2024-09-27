@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:09:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/23 19:43:07 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/27 22:41:28 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ char	*ft_itoa(int n)
 	size_t	d;
 
 	d = count_digits(n);
-	s = ft_calloc(d, sizeof(*s));
 	if (n == INT_MIN)
 		return ("-2147483648");
-	else if (n == 0)
-		return ("0");
 	else if (n < 0)
-	{
-		n = -n;
-		s[0] = '-';
-	}
+		return (ft_strjoin("-", ft_itoa(-n)));
+	s = ft_calloc(d + 1, sizeof(*s));
+	if (!s)
+		return (NULL);
 	while (d-- > 0)
 	{
 		s[d] = (n % 10) + '0';
