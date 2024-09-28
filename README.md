@@ -43,12 +43,12 @@ A useful [Libft](src/42%20Cursus/Libft/) testing tool.
 Automatic test cases for the [C Piscine](src/C%20Piscine/) exercises.
 
 [![xicodomingues/francinette - GitHub](https://gh-card.dev/repos/xicodomingues/francinette.svg?fullname=)](https://github.com/xicodomingues/francinette)
-```
-[!IMPORTANT]
-Once cloned, install it's requirements with 'pip install -r requirements.txt'. After that, head to 'tester.sh' and do the following:
--	Comment the line starting with 'source'.
--	Change 'python' to 'python3'.
-```
+
+>[!IMPORTANT]
+Once cloned, install it's requirements with `pip install -r requirements.txt`. After that, head to `tester.sh` and do the following:
+>-	Comment the line starting with `source`.
+>-	Change `python` to `python3`.
+
 [![k11q/mini-moulinette - GitHub](https://gh-card.dev/repos/k11q/mini-moulinette.svg?fullname=)](https://github.com/k11q/mini-moulinette)
 
 ## ⚙️ Project information
