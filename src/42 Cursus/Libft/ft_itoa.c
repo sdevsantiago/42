@@ -6,14 +6,14 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:09:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/27 22:41:28 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/28 21:09:47 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /* Counts the number of digits in the integer N.  */
-size_t	count_digits(int n)
+static size_t	count_digits(int n)
 {
 	size_t	d;
 
