@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/09/29 16:15:11 by sede-san         ###   ########.fr        #
+#    Updated: 2024/09/29 22:16:48 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ ft_memcpy.c \
 ft_memchr.c \
 ft_memmove.c \
 ft_memset.c \
+ft_split.c \
 ft_strchr.c \
 ft_strdup.c \
 ft_strlcat.c \
