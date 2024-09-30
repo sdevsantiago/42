@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:57:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 18:06:47 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:17:04 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ static void	free_matrix(void **m, size_t r)
 	}
 }
 
+/* Allocates memory for the next row.  */
+static char	*calloc_row(char *s, char c)
+{
+	char	*r;
+
+	if (!ft_strchr(s, c))
+		r = ft_calloc(ft_strlen(s) + 1, sizeof(*r));
+	else
+		r = ft_calloc((ft_strchr(s, c) - s) + 1, sizeof(*r));
+	return (r);
+}
+
 char	**ft_split(const char *s, char c)
 {
 	char	**m;
@@ -57,10 +69,7 @@ char	**ft_split(const char *s, char c)
 		*m = NULL;
 	while (*s)
 	{
-		if (!ft_strchr(s, c))
-			m[r] = ft_calloc(ft_strlen(s) + 1, sizeof(**m));
-		else
-			m[r] = ft_calloc((ft_strchr(s, c) - s) + 1, sizeof(**m));
+		m[r] = calloc_row((char *)s, c);
 		if (!m[r])
 			return (free_matrix((void **)m, r), NULL);
 		ft_strlcpy(m[r], s, ft_strchr(s, c) - s + 1);
