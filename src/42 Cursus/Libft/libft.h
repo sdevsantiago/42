@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/29 16:14:38 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:32:23 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	ft_putnbr_fd(int n, int fd);
 // Aditional functions
 
 int		ft_isspace(int c);
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 
 #endif

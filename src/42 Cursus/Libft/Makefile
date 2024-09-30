@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/09/30 19:34:40 by sede-san         ###   ########.fr        #
+#    Updated: 2024/09/30 19:41:16 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ ft_strlcat.c \
 ft_strlcpy.c \
 ft_strlen.c \
 ft_strncmp.c \
+ft_strncpy.c \
 ft_strnstr.c \
 ft_strrchr.c \
 ft_strtrim.c \
