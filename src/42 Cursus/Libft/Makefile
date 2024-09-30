@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/09/30 20:13:33 by sede-san         ###   ########.fr        #
+#    Updated: 2024/09/30 20:19:21 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ ft_substr.c \
 ft_putchar.c \
 ft_putstr.c \
 ft_putendl.c \
-ft_putnbr.c
+ft_putnbr.c \
+ft_putchar_fd.c \
 
 OBJ_M = $(SRC_M:.c=.o)
 
