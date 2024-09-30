@@ -6,13 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:07:17 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 20:12:42 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:14:26 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Prints the number N.*/
+/* Prints the number N.  */
 void	ft_putnbr(int n)
 {
 	char	d;
