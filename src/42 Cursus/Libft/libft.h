@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 20:04:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:06:20 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int		ft_isspace(int c);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
+void	ft_putendl(char *s);
 
 #endif
