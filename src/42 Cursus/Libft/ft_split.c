@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:57:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/29 22:37:14 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:06:47 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ char	**ft_split(const char *s, char c)
 	char	**m;
 	size_t	r;
 
-	m = ft_calloc(count_words(s, c), sizeof(*m));
+	m = ft_calloc(count_words(s, c) + 1, sizeof(*m));
 	if (!s || !c || !m)
 		return (NULL);
 	while (*s && *s == c)
 		s++;
 	r = 0;
+	if (!*s)
+		*m = NULL;
 	while (*s)
 	{
 		if (!ft_strchr(s, c))
