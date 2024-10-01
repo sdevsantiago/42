@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:44:16 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 20:51:41 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:11:14 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*str;
 	size_t	i;
 
-	if (!s || !f)
-		return (NULL);
 	str = ft_strdup(s);
-	if (!str)
+	if (!s || !f || !str)
 		return (NULL);
 	i = 0;
 	while (str[i])
