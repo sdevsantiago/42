@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/01 16:28:10 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:30:30 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 // Bonus functions
 
+// Linked list structure
 typedef struct s_list
 {
 	void			*content;
