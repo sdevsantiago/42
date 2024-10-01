@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/01 21:26:49 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/01 21:52:26 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ OBJ_MP2 = $(SRC_MP2:.c=.o)
 
 SRC_B= \
 	ft_lstadd_back.c \
-	ft_lstadd_front.c \
+	ft_lstadd_front_bonus.c \
 	ft_lstclear.c \
 	ft_lstdelone.c \
 	ft_lstiter.c \
