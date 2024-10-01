@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:57:24 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 20:04:30 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:40:33 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 /* Prints a string.  */
 void	ft_putstr(char *s)
 {
-	write(STDOUT_FILENO, s, ft_strlen(s));
+	ft_putstr_fd(s, STDOUT_FILENO);
 }
