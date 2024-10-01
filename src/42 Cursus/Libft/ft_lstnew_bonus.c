@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:05:25 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/01 21:29:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/01 21:43:51 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	l->content = content;
 	l->next = NULL;
+	return (l);
 }
