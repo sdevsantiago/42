@@ -6,12 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:20:44 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/01 21:25:41 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/01 21:30:41 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* Measures a list.  */
 int		ft_lstsize(t_list *lst)
 {
 	int	s;
