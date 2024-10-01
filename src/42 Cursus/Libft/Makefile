@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/09/30 21:26:59 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/01 21:18:14 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ SRC_B= \
 	ft_lstiter.c \
 	ft_lstlast.c \
 	ft_lstmap.c \
-	ft_lstnew.c \
+	ft_lstnew_bonus.c \
 	ft_lstsize.c
 
 OBJ_B = $(SRC_B:.c=.o)
