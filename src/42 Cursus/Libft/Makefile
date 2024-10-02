@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/01 22:12:32 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/02 09:56:38 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ SRC_B= \
 	ft_lstadd_back_bonus.c \
 	ft_lstadd_front_bonus.c \
 	ft_lstclear.c \
-	ft_lstdelone.c \
+	ft_lstdelone_bonus.c \
 	ft_lstiter.c \
 	ft_lstlast_bonus.c \
 	ft_lstmap.c \
