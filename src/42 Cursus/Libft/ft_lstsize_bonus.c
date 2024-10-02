@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:20:44 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/02 09:21:48 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:19:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_lstsize(t_list *lst)
 	int	s;
 
 	if (!lst)
-		return (NULL);
+		return (0);
 	s = 0;
 	while (lst)
 	{
