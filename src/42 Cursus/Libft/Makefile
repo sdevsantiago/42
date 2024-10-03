@@ -6,12 +6,13 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/03 08:43:31 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/03 12:11:22 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ******************************** Output file ******************************* #
-NAME =		libft.a
+# ******************************* Output files ******************************* #
+NAME =			libft.a
+BONUS_NAME =	.bonus
 
 # ********************************* Variables ******************************** #
 # Compiler and flags
@@ -101,28 +102,29 @@ OBJ_A =		$(SRC_A:.c=.o)
 
 # Compile objects
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # ********************************* Rules ************************************ #
 # Compile all
 all: $(NAME)
 
 $(NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
-	ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	@ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
 # Compile bonus
-bonus: $(BONUS_NAME)
+bonus: all
+	ar rcs $(NAME) $(OBJ_B)
 
-$(BONUS_NAME):
-	AR rcs $(NAME) $(OBJ_B)
+-include $(DEP_B)
+
 # Clean objects
 clean:
-	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	@rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
-# Clean objects and executable
+# Clean bonus objects and executable
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(OBJ_B)
+	@rm -rf $(OBJ_B)
+	@rm -f $(NAME)
 
 # Clean all and recompile
 re: fclean all
