@@ -1,9 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
+#    Updated: 2024/10/03 20:09:14 by sede-san         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# ******************************* Output files ******************************* #
+# Library name
 NAME = libft.a
 
+# Bonus functions relink check file
+BONUS_NAME = .bonus
+
+# ************************** Compilation variables *************************** #
+# Compiler
 CC = cc
 
+# Compilation flags
 CFLAGS = -Wall -Wextra -Werror
 
+# Debug flags
+DFLAGS = -g3 -fsanitize=address
+ifdef DEBUG
+	CFLAGS += $(DFLAGS)
+endif
+
+# ****************************** Source files ******************************** #
+# Mandatory part 1
 SRC_MP1= \
 	ft_atoi.c \
 	ft_bzero.c \
@@ -29,8 +57,7 @@ SRC_MP1= \
 	ft_tolower.c \
 	ft_toupper.c
 
-OBJ_MP1 = $(SRC_MP1:.c=.o)
-
+# Mandatory part 2
 SRC_MP2= \
 	ft_itoa.c \
 	ft_putchar_fd.c \
@@ -44,21 +71,19 @@ SRC_MP2= \
 	ft_strtrim.c \
 	ft_substr.c
 
-OBJ_MP2 = $(SRC_MP2:.c=.o)
-
+# Bonus part
 SRC_B= \
-	ft_lstadd_back.c \
-	ft_lstadd_front.c \
-	ft_lstclear.c \
-	ft_lstdelone.c \
-	ft_lstiter.c \
-	ft_lstlast.c \
-	ft_lstmap.c \
-	ft_lstnew.c \
-	ft_lstsize.c
+	ft_lstadd_back_bonus.c \
+	ft_lstadd_front_bonus.c \
+	ft_lstclear_bonus.c \
+	ft_lstdelone_bonus.c \
+	ft_lstiter_bonus.c \
+	ft_lstlast_bonus.c \
+	ft_lstmap_bonus.c \
+	ft_lstnew_bonus.c \
+	ft_lstsize_bonus.c
 
-OBJ_B = $(SRC_B:.c=.o)
-
+# Aditional functions
 SRC_A= \
 	ft_isspace.c \
 	ft_putchar.c \
@@ -67,23 +92,49 @@ SRC_A= \
 	ft_putstr.c \
 	ft_strncpy.c
 
+# ****************************** Object files ******************************** #
+# Mandatory part 1
+OBJ_MP1 = $(SRC_MP1:.c=.o)
+
+# Mandatory part 2
+OBJ_MP2 = $(SRC_MP2:.c=.o)
+
+# Bonus part
+OBJ_B = $(SRC_B:.c=.o)
+
+# Aditional functions
 OBJ_A = $(SRC_A:.c=.o)
 
+# ********************************* Rules ************************************ #
+# Compile all
 all: $(NAME)
 
-bonus: $(OBJ_B)
-	ar rcs $(NAME) $(OBJ_B)
-
 $(NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
-	ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	@ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
+# Compile bonus
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A) $(OBJ_B)
+	@ar rcs $(NAME) $(OBJ_B)
+	@touch $(BONUS_NAME)
+
+# Compile object files
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean object files
 clean:
-	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	@rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
+# Clean bonus and library
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(OBJ_B)
+	@rm -f $(NAME)
+	@rm -f $(BONUS_NAME)
+	@rm -f $(OBJ_B)
 
+# Recompile
 re: fclean all
 
-.PHONY = all bonus clean fclean re
+# *********************************** Phony ********************************** #
+.PHONY = all bonus .bonus clean fclean re
