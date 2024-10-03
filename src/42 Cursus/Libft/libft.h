@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/03 20:47:32 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:51:51 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_putchar(char c);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 void	ft_putstr(char *s);
-void	ft_swap(int *a, int *b);
+void	ft_swap(void *a, void *b);
 int		ft_isspace(int c);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 
