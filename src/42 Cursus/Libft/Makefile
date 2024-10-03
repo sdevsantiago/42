@@ -6,16 +6,26 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 14:21:55 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/02 10:15:59 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/03 08:43:31 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+# ******************************** Output file ******************************* #
+NAME =		libft.a
 
-CC = cc
+# ********************************* Variables ******************************** #
+# Compiler and flags
+CC =		cc
+CFLAGS =	-Wall -Wextra -Werror
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+# Debug flags
+DFLAGS =	-g3 -fsanitize=address
+ifdef DEBUG
+	CFLAGS += $(DFLAGS)
+endif
 
+# ******************************* Source file********************************* #
+# Mandatory part 1
 SRC_MP1= \
 	ft_atoi.c \
 	ft_bzero.c \
@@ -41,8 +51,7 @@ SRC_MP1= \
 	ft_tolower.c \
 	ft_toupper.c
 
-OBJ_MP1 = $(SRC_MP1:.c=.o)
-
+# Mandatory part 2
 SRC_MP2= \
 	ft_itoa.c \
 	ft_putchar_fd.c \
@@ -56,8 +65,7 @@ SRC_MP2= \
 	ft_strtrim.c \
 	ft_substr.c
 
-OBJ_MP2 = $(SRC_MP2:.c=.o)
-
+# Bonus part
 SRC_B= \
 	ft_lstadd_back_bonus.c \
 	ft_lstadd_front_bonus.c \
@@ -69,8 +77,7 @@ SRC_B= \
 	ft_lstnew_bonus.c \
 	ft_lstsize_bonus.c
 
-OBJ_B = $(SRC_B:.c=.o)
-
+# Additional functions
 SRC_A= \
 	ft_isspace.c \
 	ft_putchar.c \
@@ -79,23 +86,46 @@ SRC_A= \
 	ft_putstr.c \
 	ft_strncpy.c
 
-OBJ_A = $(SRC_A:.c=.o)
+# ********************************* Objects ********************************** #
+# Mandatory part 1
+OBJ_MP1 =	$(SRC_MP1:.c=.o)
 
+# Mandatory part 2
+OBJ_MP2 =	$(SRC_MP2:.c=.o)
+
+# Bonus part
+OBJ_B =		$(SRC_B:.c=.o)
+
+# Additional functions
+OBJ_A =		$(SRC_A:.c=.o)
+
+# Compile objects
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# ********************************* Rules ************************************ #
+# Compile all
 all: $(NAME)
-
-bonus: $(OBJ_B)
-	ar rcs $(NAME) $(OBJ_B)
 
 $(NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 	ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
+# Compile bonus
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME):
+	AR rcs $(NAME) $(OBJ_B)
+# Clean objects
 clean:
 	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
+# Clean objects and executable
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(OBJ_B)
 
+# Clean all and recompile
 re: fclean all
 
+# ********************************* Phony ************************************ #
 .PHONY = all bonus clean fclean re
