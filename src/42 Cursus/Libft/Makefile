@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/03 20:48:25 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/07 22:03:59 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,6 @@ CC = cc
 
 # Compilation flags
 CFLAGS = -Wall -Wextra -Werror
-
-# Debug flags
-DFLAGS = -g3 -fsanitize=address
-ifdef DEBUG
-	CFLAGS += $(DFLAGS)
-endif
 
 # ****************************** Source files ******************************** #
 # Mandatory part 1
