@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/03 20:51:51 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/07 22:09:16 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <unistd.h>
 
-// Part 1 functions
+/* **************************** Part 1 functions **************************** */
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -45,7 +45,7 @@ char	*ft_strdup(const char *s);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 
-// Part 2 functions
+/* **************************** Part 2 functions **************************** */
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -59,7 +59,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	**ft_split(const char *s, char c);
 
-// Bonus functions
+/* ***************************** Bonus functions **************************** */
 
 // Linked list structure
 typedef struct s_list
@@ -78,7 +78,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
 
-// Aditional functions
+/* *************************** Aditional functions ************************** */
 
 void	ft_putchar(char c);
 void	ft_putendl(char *s);
