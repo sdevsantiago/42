@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:17:43 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/07 20:39:05 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:40:00 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
    Each byte is set to 0.  */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*c;
+	void	*new_addr;
 
-	c = (void *)malloc(nmemb * size);
-	if (!c)
+	new_addr = (void *)malloc(nmemb * size);
+	if (!new_addr)
 		return (NULL);
-	ft_bzero(c, nmemb * size);
-	return (c);
+	ft_bzero(new_addr, nmemb * size);
+	return (new_addr);
 }
