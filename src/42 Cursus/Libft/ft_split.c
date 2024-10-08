@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:57:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 19:17:04 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:58:57 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 /* Counts the words in the string S using C as separator.  */
 static size_t	count_words(const char *s, char c)
 {
-	size_t	w;
+	size_t	words;
 
 	if (!s || !c)
 		return ((size_t) NULL);
-	w = 0;
+	words = 0;
 	while (*s)
 	{
 		while (*s == c && *s)
 			s++;
-		w++;
+		words++;
 		while (*s != c && *s)
 			s++;
 	}
-	return (w);
+	return (words);
 }
 
 /* Frees the last R rows, from the M matrix.  */
@@ -45,39 +45,39 @@ static void	free_matrix(void **m, size_t r)
 /* Allocates memory for the next row.  */
 static char	*calloc_row(char *s, char c)
 {
-	char	*r;
+	char	*row;
 
 	if (!ft_strchr(s, c))
-		r = ft_calloc(ft_strlen(s) + 1, sizeof(*r));
+		row = ft_calloc(ft_strlen(s) + 1, sizeof(*row));
 	else
-		r = ft_calloc((ft_strchr(s, c) - s) + 1, sizeof(*r));
-	return (r);
+		row = ft_calloc((ft_strchr(s, c) - s) + 1, sizeof(*row));
+	return (row);
 }
 
+/* Splits the string S using C as separator.  */
 char	**ft_split(const char *s, char c)
 {
-	char	**m;
-	size_t	r;
+	char	**s_split;
+	size_t	row;
 
-	m = ft_calloc(count_words(s, c) + 1, sizeof(*m));
-	if (!s || !c || !m)
+	s_split = ft_calloc(count_words(s, c) + 1, sizeof(*s_split));
+	if (!s || !c || !s_split)
 		return (NULL);
-	while (*s && *s == c)
-		s++;
-	r = 0;
+	s += (long)ft_strchr(s, c);
+	row = 0;
 	if (!*s)
-		*m = NULL;
+		*s_split = NULL;
 	while (*s)
 	{
-		m[r] = calloc_row((char *)s, c);
-		if (!m[r])
-			return (free_matrix((void **)m, r), NULL);
-		ft_strlcpy(m[r], s, ft_strchr(s, c) - s + 1);
+		s_split[row] = calloc_row((char *)s, c);
+		if (!s_split[row])
+			return (free_matrix((void **)s_split, row), NULL);
+		ft_strlcpy(s_split[row], s, ft_strchr(s, c) - s + 1);
 		while (*s && *s != c)
 			s++;
 		while (*s && *s == c)
 			s++;
-		r++;
+		row++;
 	}
-	return (m);
+	return (s_split);
 }

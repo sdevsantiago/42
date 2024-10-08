@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:33:49 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/25 17:52:03 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:59:44 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 /*	Duplicates a string.  */
 char	*ft_strdup(const char *s)
 {
+	char	*s_dup;
 	int		i;
-	char	*d;
 
-	d = (char *)malloc(ft_strlen(s) + 1);
-	if (!d)
+	s_dup = (char *)malloc(ft_strlen(s) + 1);
+	if (!s_dup)
 		return (NULL);
 	i = 0;
 	while (s[i])
 	{
-		d[i] = s[i];
+		s_dup[i] = s[i];
 		i++;
 	}
-	d[i] = '\0';
-	return (d);
+	s_dup[i] = '\0';
+	return (s_dup);
 }

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:37:46 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/25 18:06:37 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:30:20 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 int	ft_atoi(const char *str)
 {
 	int	minus;
-	int	n;
+	int	num;
 
 	minus = 1;
-	n = 0;
+	num = 0;
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
@@ -30,8 +30,8 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		n = n * 10 + (*str - '0');
+		num = num * 10 + (*str - '0');
 		str++;
 	}
-	return (n * minus);
+	return (num * minus);
 }

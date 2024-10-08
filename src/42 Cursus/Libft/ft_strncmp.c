@@ -6,13 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:32:22 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/24 15:39:48 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:07:30 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Compares the first n bytes of two strings.  */
+/* Compares the first N bytes of two strings.  */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:09:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/08 14:35:48 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:52:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* Counts the number of digits in the integer N.  */
 static size_t	count_digits(int n)
 {
-	size_t	d;
+	size_t	digits;
 
-	d = 0;
+	digits = 0;
 	if (n == INT_MIN)
 		return (10);
 	else if (n == 0)
@@ -27,29 +27,29 @@ static size_t	count_digits(int n)
 	while (n > 0)
 	{
 		n /= 10;
-		d++;
+		digits++;
 	}
-	return (d);
+	return (digits);
 }
 
 /* Converts an integer into a string.  */
 char	*ft_itoa(int n)
 {
-	char	*s;
-	size_t	d;
+	char	*num_str;
+	size_t	digits;
 
-	d = count_digits(n);
+	digits = count_digits(n);
 	if (n == INT_MIN)
-		return(ft_strdup("-2147483648"));
+		return (ft_strdup("-2147483648"));
 	else if (n < 0)
 		return (ft_strjoin("-", ft_itoa(-n)));
-	s = ft_calloc(d + 1, sizeof(*s));
-	if (!s)
+	num_str = ft_calloc(digits + 1, sizeof(*num_str));
+	if (!num_str)
 		return (NULL);
-	while (d-- > 0)
+	while (digits-- > 0)
 	{
-		s[d] = (n % 10) + '0';
+		num_str[digits] = (n % 10) + '0';
 		n /= 10;
 	}
-	return (s);
+	return (num_str);
 }

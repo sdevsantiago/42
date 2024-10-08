@@ -6,13 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:17:00 by sede-san          #+#    #+#             */
-/*   Updated: 2024/09/30 20:18:57 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:56:59 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Prints a character followed by a new line in the FD given.  */
+/* Prints a character.  */
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
