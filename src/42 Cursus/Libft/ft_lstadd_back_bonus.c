@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:57:46 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/03 18:45:53 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:32:20 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Adds the node NEW to the last position of the list LST.  */
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*l;
+	t_list	*aux_lst;
 
 	if (!lst || !new)
 		return ;
@@ -23,8 +23,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 	{
-		l = ft_lstlast(*lst);
-		l->next = new;
+		aux_lst = ft_lstlast(*lst);
+		aux_lst->next = new;
 	}
 	new->next = NULL;
 }
