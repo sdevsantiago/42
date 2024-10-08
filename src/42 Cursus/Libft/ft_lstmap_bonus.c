@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:10:51 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/03 19:00:01 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:02:28 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@
    The result is returned in a new list.  */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*l;
-	t_list	*n;
+	t_list	*new_list;
+	t_list	*node;
 
-	n = NULL;
-	if (!lst || !f)
+	if (!lst || !f || !del)
 		return (NULL);
+	new_list = NULL;
 	while (lst)
 	{
-		n = ft_lstnew(f(lst->content));
-		if (!n)
+		node = ft_lstnew(f(lst->content));
+		if (!node)
 		{
-			ft_lstclear(&n, del);
+			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&l, n);
+		ft_lstadd_back(&new_list, node);
 		lst = lst->next;
 	}
-	return (l);
+	return (new_list);
 }
