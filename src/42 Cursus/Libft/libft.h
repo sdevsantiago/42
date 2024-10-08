@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/07 22:09:16 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:30:48 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_split(const char *s, char c);
 
 /* ***************************** Bonus functions **************************** */
 
-// Linked list structure
+// Single linked list structure
 typedef struct s_list
 {
 	void			*content;
