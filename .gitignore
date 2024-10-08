@@ -1,6 +1,9 @@
 # Visual Studio Code
 .vscode
 
+# Libft
+*.bonus
+
 # C
 *.out
 *.gch
