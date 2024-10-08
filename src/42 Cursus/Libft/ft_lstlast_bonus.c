@@ -6,12 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:54:05 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/03 19:03:09 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:41:00 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* Returns the last element of the list LST.  */
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
