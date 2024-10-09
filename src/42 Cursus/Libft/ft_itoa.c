@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:09:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/08 14:52:01 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:32:05 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,20 @@ char	*ft_itoa(int n)
 	if (n == INT_MIN)
 		return (ft_strdup("-2147483648"));
 	else if (n < 0)
-		return (ft_strjoin("-", ft_itoa(-n)));
-	num_str = ft_calloc(digits + 1, sizeof(*num_str));
+	{
+		digits++;
+		n = -n;
+	}
+	num_str = (char *)malloc((digits + 1) * sizeof(*num_str));
 	if (!num_str)
 		return (NULL);
+	num_str[digits] = '\0';
 	while (digits-- > 0)
 	{
 		num_str[digits] = (n % 10) + '0';
 		n /= 10;
 	}
+	if (num_str[0] == '0' && num_str[1] != '\0')
+		num_str[0] = '-';
 	return (num_str);
 }
