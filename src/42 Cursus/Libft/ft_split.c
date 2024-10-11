@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:57:37 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/11 20:09:27 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:34:20 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	**ft_split(const char *s, char c)
 		while (s[len] != c && s[len])
 			len++;
 		if (len)
-			s_split[row++] = ft_substr(s, 0, len);
-		if (!&s_split[row - 1])
+			s_split[row] = ft_substr(s, 0, len);
+		if (len && !s_split[row++])
 			return (free_matrix((void **)s_split), NULL);
 		s += len;
 	}
