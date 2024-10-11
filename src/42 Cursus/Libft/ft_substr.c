@@ -6,13 +6,14 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 09:19:18 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/08 20:20:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:19:02 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Creates a copy of the string S from the index START of LEN characters.  */
+/* Creates a NULL-terminating copy of the string S from the index START
+   of LEN characters.  */
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char	*substr;
@@ -30,7 +31,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (len > s_len - start)
 		len = s_len - start;
 	substr = malloc((sizeof (*substr) * len) + 1);
-	if (substr == NULL)
+	if (!substr)
 		return (NULL);
 	s += start;
 	i = 0;
