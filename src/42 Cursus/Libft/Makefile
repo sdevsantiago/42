@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/07 22:03:59 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/11 21:53:33 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 # Compile bonus
 bonus: $(BONUS_NAME)
 
-$(BONUS_NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A) $(OBJ_B)
+$(BONUS_NAME): $(OBJ_B)
 	@ar rcs $(NAME) $(OBJ_B)
 	@touch $(BONUS_NAME)
 
