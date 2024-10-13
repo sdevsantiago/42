@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/11 21:53:33 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/13 13:35:23 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,33 +100,33 @@ OBJ_B = $(SRC_B:.c=.o)
 # Aditional functions
 OBJ_A = $(SRC_A:.c=.o)
 
+# Compile object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 # ********************************* Rules ************************************ #
 # Compile all
 all: $(NAME)
 
 $(NAME): $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
-	@ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	ar rcs $(NAME) $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
 # Compile bonus
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(OBJ_B)
-	@ar rcs $(NAME) $(OBJ_B)
-	@touch $(BONUS_NAME)
-
-# Compile object files
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	ar rcs $(NAME) $(OBJ_B)
+	touch $(BONUS_NAME)
 
 # Clean object files
 clean:
-	@rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
 
 # Clean bonus and library
 fclean: clean
-	@rm -f $(NAME)
-	@rm -f $(BONUS_NAME)
-	@rm -f $(OBJ_B)
+	rm -f $(NAME)
+	rm -f $(BONUS_NAME)
+	rm -f $(OBJ_B)
 
 # Recompile
 re: fclean all
