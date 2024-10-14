@@ -105,17 +105,21 @@ Fuente: [https://www.geeksforgeeks.org/hostnamectl-command-in-linux-with-example
 ### Política de contraseñas
 
 #### Configuración
-• Tu contraseña debe expirar cada 30 días.
-`/etc/login.defs` => PASS_MAX_DAYS 30
-• El número mínimo de días permitido antes de modificar una contraseña deberá ser 2.
-`/etc/login.defs` => PASS_MIN_DAYS 2
-• El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
-`/etc/login.defs` => PASS_WARN_AGE 7
-• Tu contraseña debe tener como mínimo 10 caracteres de longitud. Debe contener una mayúscula, una minúscula y un número. Por cierto, no puede tener más de 3 veces consecutivas el mismo carácter.
-`/etc/security/pwquality.conf` => minlen = 10
-`/etc/security/pwquality.conf` => ucredit = -1
-`/etc/security/pwquality.conf` => lredit = 10
-`/etc/security/pwquality.conf` => maxclassrepeat = 3
+-	Tu contraseña debe expirar cada 30 días.
+	-	`/etc/login.defs` => PASS_MAX_DAYS 30
+-	El número mínimo de días permitido antes de modificar una contraseña deberá ser 2.
+	-	`/etc/login.defs` => PASS_MIN_DAYS 2
+-	El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
+	-	`/etc/login.defs` => PASS_WARN_AGE 7
+-	Tu contraseña debe tener como mínimo 10 caracteres de longitud. Debe contener una mayúscula, una minúscula y un número. Por cierto, no puede tener más de 3 veces consecutivas el mismo carácter.
+	-	`/etc/security/pwquality.conf` => minlen = 10
+	-	`/etc/security/pwquality.conf` => ucredit = -1
+	-	`/etc/security/pwquality.conf` => lredit = 10
+	-	`/etc/security/pwquality.conf` => maxclassrepeat = 3
+-	La contraseña no puede contener el nombre del usuario.
+-	La contraseña debe tener al menos 7 caracteres que no sean parte de la antigua contraseña. *Esta regla no se aplica para root*.
+
+Una vez cambiada la política de contraseñas, deberemos actualizar las contraseñas de todos los usuarios con el comando `passwd usuario`.
 
 Fuente: [https://www.server-world.info/en/note?os=Rocky_Linux_8&p=pam&f=1]()
 
