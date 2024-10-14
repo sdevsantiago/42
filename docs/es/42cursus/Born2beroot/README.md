@@ -79,9 +79,13 @@ Para confirmar los cambios, será necesario guardar el archivo y reiniciar el si
 > [!TIP]
 > Puedes consultar la política que se está ejecutando en todo momento con el comando `getenforce`.
 
+Fuente: [https://www.redhat.com/es/topics/linux/what-is-selinux]()
+
 ### LVM (Logical Volume Manager)
 El almacenamiento tradicional se basa en el espacio individual de cada disco. LVM, sin embargo, administra el espacio combinando la capacidad de los discos disponibles. De esta manera, LVM considera el almacenamiento de todos los discos como una capacidad total. Esto se consigue designando los discos de almacenamieno como *Volúmenes Físicos (PV)*, o capacidad que puede usar LVM. A continuación, estos PVs son añadidos a uno o más *Grupos de Volúmenes (VG)*. Por último, estos VGs son añadidos a uno o más *Volúmenes Lógicos (LV)*, los cuales son tratados como particiones tradicionales.
 ![LVM Example](../../../../img/42cursus/Born2beroot/basic-lvm-volume.png)
+
+Fuente: [https://www.redhat.com/sysadmin/lvm-vs-partitioning]()
 
 #### Configuración
 
