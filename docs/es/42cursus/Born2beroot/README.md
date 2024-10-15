@@ -13,6 +13,7 @@
 		- [📦 Software](#-software)
 		- [💾 Sistema](#-sistema)
 	- [💯 Parte obligatoria](#-parte-obligatoria)
+		- [Gestor de paquetes](#gestor-de-paquetes)
 		- [SELinux (Security-Enhanced Linux)](#selinux-security-enhanced-linux)
 			- [Configuración](#configuración)
 		- [LVM (Logical Volume Manager)](#lvm-logical-volume-manager)
@@ -25,6 +26,9 @@
 			- [Configuración](#configuración-4)
 		- [Política de contraseñas](#política-de-contraseñas)
 			- [Configuración](#configuración-5)
+		- [Sudo](#sudo)
+			- [Configuración](#configuración-6)
+			- [Defensa](#defensa)
 	- [🅱️ Parte bonus](#️-parte-bonus)
 
 ## 👨🏻‍💻 Hipervisor
@@ -56,6 +60,10 @@ Mantendremos la configuración por defecto.
 Deberemos seleccionar el disco que hayamos configurado previamente como disco por defecto.
 
 ## 💯 Parte obligatoria
+
+### Gestor de paquetes
+Rocky Linux utiliza dnf como gestor de paquetes.
+
 ### SELinux (Security-Enhanced Linux)
 SELinux es un sistema de control de acceso obligatorio integrado en el núcleo de Linux. Este añade una capa adicional de control que define qué operaciones pueden realizar cada usuario, proceso o aplicación en el sistema, independientemente de los permisos tradicionales. Para ello, utiliza políticas predefinidas o personalizadas que describen cómo deben comportarse las aplicaciones y los usuarios, definiendo qué procesos pueden acceder a qué recursos del sistema, esto lo realiza aplicando una etiqueta, o contexto, de seguridad que es evaluada antes de permitir el acceso.
 
@@ -101,8 +109,12 @@ El hostname es el nombre por el que se conoce un equipo dentro de una red. Esto 
 #### Configuración
 Tenemos dos maneras de poder cambiar el nombre del equipo:
 -	Modificando el fichero `/etc/hostname`
--	Usando el comando `hostnamectl set-hostname <nombre>`
+-	Usando el comando `hostnamectl set-hostname nombre`
 En el caso de Born2beroot, el hostname deberá ser el login del estudiante seguido de 42 (ej.: sede-san42).
+
+Si queremos modificar el hostname "bonito", deberemos ejeutar el comando `hostnamectl set-hostname --pretty nombre` (si el nombre es el mismo que el hostname, esto no tendrá efecto alguno).
+
+Será necesario reiniciar el equipo para poder ver los cambios. Podemos hacer esto con el comando `reboot`.
 
 Fuente: [https://www.geeksforgeeks.org/hostnamectl-command-in-linux-with-examples/]()
 
@@ -110,21 +122,50 @@ Fuente: [https://www.geeksforgeeks.org/hostnamectl-command-in-linux-with-example
 
 #### Configuración
 -	Tu contraseña debe expirar cada 30 días.
-	-	`/etc/login.defs` => PASS_MAX_DAYS 30
+	-	`/etc/login.defs` => PASS_MAX_DAYS 30 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -M 30 usuario`
 -	El número mínimo de días permitido antes de modificar una contraseña deberá ser 2.
-	-	`/etc/login.defs` => PASS_MIN_DAYS 2
+	-	`/etc/login.defs` => PASS_MIN_DAYS 2 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -m 2 usuario`
 -	El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
-	-	`/etc/login.defs` => PASS_WARN_AGE 7
+	-	`/etc/login.defs` => PASS_WARN_AGE 7 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -W 30 usuario`
 -	Tu contraseña debe tener como mínimo 10 caracteres de longitud. Debe contener una mayúscula, una minúscula y un número. Por cierto, no puede tener más de 3 veces consecutivas el mismo carácter.
-	-	`/etc/security/pwquality.conf` => minlen = 10
-	-	`/etc/security/pwquality.conf` => ucredit = -1
-	-	`/etc/security/pwquality.conf` => lredit = 10
-	-	`/etc/security/pwquality.conf` => maxclassrepeat = 3
+	-	`/etc/security/pwquality.conf`:11 => minlen = 10
+	-	`/etc/security/pwquality.conf`:20 => ucredit = -1
+	-	`/etc/security/pwquality.conf`:25 => lcredit = -1
+	-	`/etc/security/pwquality.conf`:15 => dcredit = -1
+	-	`/etc/security/pwquality.conf`:38 => maxrepeat = 3
 -	La contraseña no puede contener el nombre del usuario.
+	-	`/etc/security/pwquality.conf`:55 => usercheck = 1
 -	La contraseña debe tener al menos 7 caracteres que no sean parte de la antigua contraseña. *Esta regla no se aplica para root*.
+	-	`etc/security/pwquality.conf`:6 => difok = 7
+-	Evidentemente, tu contraseña para root debe seguir esta política.
+	-	`etc/security/pwquality.conf`:74 => enforce_for_root
 
-Una vez cambiada la política de contraseñas, deberemos actualizar las contraseñas de todos los usuarios con el comando `passwd usuario`.
+En resumen, el archivo `pwquality.conf` contiene una gran cantidad de opciones para fortalecer las contraseñas de los usuarios de nuestro servidor. Born2beroot nos permite habilitar las reglas más utilizadas a la hora de reforzar la seguridad en las contraseñas.
+
+Una vez cambiada la política de contraseñas, deberemos actualizar las contraseñas de todos los usuarios ya existentes con el comando `passwd usuario`. Si la configuración se ha aplicado correctamente, un intento de contraseña que no cumpla todas las nuevas reglas devolverá un error en la terminal.
+
+Podremos consultar la caducidad de las contraseñas de un usuario concreto con el comando `chage -l usuario`.
 
 Fuente: [https://www.server-world.info/en/note?os=Rocky_Linux_8&p=pam&f=1]()
+
+### Sudo
+
+#### Configuración
+Toda la configuración referente al comando `sudo` se encuentra disponible en el fichero `/etc/sudoers`.
+
+> [!WARNING]
+> Aunque se nos recuerda en la cabecera del propio fichero, este deberá ser editado utilizando `visudo`. Este evita que varias personas editen el archivo de manera simultánea y verifica la sintaxis antes de guardar los cambios.
+
+#### Defensa
+Durante la defensa, se nos pedirá otorgar permisos de sudo a un nuevo usuario. Para ello, deberemos acceder nuevamente al archivo `/etc/sudoers` y añadir lo siguiente:
+
+	usuario	ALL=(ALL)	ALL
+
+Introduciendo esta línea estamos dando permiso al usuario para que en cualquier equipo pueda ejecutar cualquier comando.
+
+Fuente: [https://geekland.eu/configurar-sudo-en-linux/]()
 
 ## 🅱️ Parte bonus
