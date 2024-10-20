@@ -29,6 +29,8 @@
 		- [Sudo](#sudo)
 			- [Configuración](#configuración-6)
 			- [Defensa](#defensa)
+		- [Script](#script)
+			- [Creación del script](#creación-del-script)
 	- [🅱️ Parte bonus](#️-parte-bonus)
 
 ## 👨🏻‍💻 Hipervisor
@@ -109,8 +111,7 @@ El hostname es el nombre por el que se conoce un equipo dentro de una red. Esto 
 #### Configuración
 Tenemos dos maneras de poder cambiar el nombre del equipo:
 -	Modificando el fichero `/etc/hostname`
--	Usando el comando `hostnamectl set-hostname nombre`
-En el caso de Born2beroot, el hostname deberá ser el login del estudiante seguido de 42 (ej.: sede-san42).
+-	Usando el comando `hostnamectl set-hostname nombre` *(en el caso de Born2beroot, el hostname deberá ser el login del estudiante seguido de 42 (ej.: sede-san42))*
 
 Si queremos modificar el hostname "bonito", deberemos ejeutar el comando `hostnamectl set-hostname --pretty nombre` (si el nombre es el mismo que el hostname, esto no tendrá efecto alguno).
 
@@ -157,7 +158,23 @@ Fuente: [https://www.server-world.info/en/note?os=Rocky_Linux_8&p=pam&f=1]()
 Toda la configuración referente al comando `sudo` se encuentra disponible en el fichero `/etc/sudoers`.
 
 > [!WARNING]
-> Aunque se nos recuerda en la cabecera del propio fichero, este deberá ser editado utilizando `visudo`. Este evita que varias personas editen el archivo de manera simultánea y verifica la sintaxis antes de guardar los cambios.
+> Aunque se nos recuerda en la cabecera del propio fichero, este deberá ser editado utilizando `visudo`. Este evita que varias personas editen el archivo de manera simultánea y verifica la sintaxis antes de guardar los cambios. Los cambios se realizan sobre un fichero temporal `/etc/sudoers.tmp` y, una vez se guarda, los cambios se aplican sobre el fichero real.
+
+-	Autenticarte con sudo debe estar limitado a tres intentos en el caso de introducir una contraseña incorrecta.
+	-	`/etc/sudoers` => Defaults passwd_tries=3
+-	Un mensaje personalizado de tu elección debe mostrarse en caso de que la contraseña introducida sea incorrecta cuando se utilice sudo.
+	-	`/etc/sudoers` => Defaults badpass_message="mensaje"
+	-	Si queremos que, en vez de mostrar un mensaje personalizado, la máquina nos insulte, deberemos habilitar el siguiente ajuste (habilitando esta configuración, se ignora badpass_message): `/etc/sudoers` => Defaults insults
+-	Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio /var/log/sudo/.
+	-	`/etc/sudoers` => Defaults logfile="/var/log/sudo/sudo.log"
+	-	`/etc/sudoers` => Defaults iolog_dir="/var/log/sudo"
+	-	`/etc/sudoers` => Defaults log_input, log_output
+> [!NOTE]
+> Si el directorio no existe, deberemos crearlo nosotros a mano (`mkdir -p /var/log/sudo`).
+-	El modo TTY debe estar activado por razones de seguridad.
+	-	`/etc/sudoers` => Defaults requiretty
+-	Por seguridad, los directorios utilizables por sudo deben estar restringidos. Por ejemplo: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+	-	`/etc/sudoers`:88 => Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
 #### Defensa
 Durante la defensa, se nos pedirá otorgar permisos de sudo a un nuevo usuario. Para ello, deberemos acceder nuevamente al archivo `/etc/sudoers` y añadir lo siguiente:
@@ -166,6 +183,38 @@ Durante la defensa, se nos pedirá otorgar permisos de sudo a un nuevo usuario. 
 
 Introduciendo esta línea estamos dando permiso al usuario para que en cualquier equipo pueda ejecutar cualquier comando.
 
-Fuente: [https://geekland.eu/configurar-sudo-en-linux/]()
+En caso de tener un grupo de administradores (*sudo* en muchos sistemas Linux por defecto, o *wheel* en caso de Rocky), podemos añadir al usuario al grupo y ya tendría dichos permisos. Esto solo aplica si existe la siguiente regla:
+
+	%grupo	ALL=(ALL)	ALL
+
+> [!NOTE]
+> En este caso, deberemos reiniciar la máquina una vez llevado a cabo este cambio.
+
+Esto, al contrario que en el caso anterior, aplica los permisos de *sudo* sobre el grupo, y no sobre un usuario concreto.
+
+Fuente: [https://www.geeksforgeeks.org/useful-sudoers-configurations-for-setting-sudo-in-linux/]()
+
+### Script
+
+#### Creación del script
+El subject requiere que realicemos un script que, cada 10 minutos, muestre la siguiente información:
+-	La arquitectura de tu sistema operativo y su versión de kernel.
+-	El número de núcleos físicos.
+-	El número de núcleos virtuales.
+-	La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso.
+-	La memoria disponible actualmente en tu servidor y su utilización como un porcentaje.
+-	El porcentaje actual de uso de tus núcleos.
+-	La fecha y hora del último reinicio.
+-	Si LVM está activo o no.
+-	El número de conexiones activas.
+-	El número de usuarios del servidor.
+-	La dirección IPv4 de tu servidor y su MAC (Media Access Control)
+-	El número de comandos ejecutados con sudo.
+
+Para ello, crearemos el archivo `/root/monitoring.sh` y pondremos lo siguiente:
+
+	#! /bin/bash
+
+	
 
 ## 🅱️ Parte bonus
