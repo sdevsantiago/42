@@ -215,6 +215,21 @@ Para ello, crearemos el archivo `/root/monitoring.sh` y pondremos lo siguiente:
 
 	#! /bin/bash
 
-	
+	arch=$(uname -p)
+	kernel=$(uname -sr)
+	physCPU=$(lscpu | awk 'FNR==12 {print $4}')
+	virtCPU=$(lscpu | awk 'FNR==11 {print $4}')
+	ramTot=$(awk '/MemTotal/ ${print $2}' /proc/meminfo)
+	ramAva=$(awk '/MemAvailable/ ${print $2}' /proc/meminfo)
+	ramUse=$(awk "BEGIN {print ${ramTot} - ${ramAva}}")
+	diskTot=$(lsblk -b | awk '/sda/ {print $4}' | awk 'NR==1')
+	diskAva=$(df --block-size=1 | awk 'FNR==5 {print $4}')
+	diskUse=$(awk "BEGIN {print ${diskTot} - ${diskAva}}")
+
+	echo -e "\t# Architecture:\t" ${arch}
+	echo -e "\t# Kernel:\t" ${kernel}
+	echo -e "\t# CPU Physical:\t" ${physCPU}
+	echo -e "\t# vCPU:\t\t" ${virtCPU}
+	echo -e "\t# Memory Usage:\t" $(awk "BEGIN {printf \"%.2f / %.2f MB (%.2f%%)\", ${ramUse} / 1024, ${ramUse} / 1024, ${ramUse} / ${ramTot} * 100}")
 
 ## 🅱️ Parte bonus
