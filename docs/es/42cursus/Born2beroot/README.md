@@ -100,7 +100,29 @@ Fuente: [https://www.redhat.com/sysadmin/lvm-vs-partitioning]()
 #### Configuración
 
 ### SSH (Secure Shell)
+SSH es un protocolo que permite conectar dos máquinas mediante un canal cifrado.
+
+Este servicio ya viene instalado por defecto en el sistema, para verificar que está activo deberemos ejecutar el comando `systemctl status sshd`.
+
 #### Configuración
+El subject requiere que el servicio se ejecute en el puerto 4242 y que no sea posible conectarse como root. Para hacer estos cambios, deberemos acceder al fichero de configuración `/etc/ssh/sshd_config` y realizar los siguientes cambios:
+-	`/etc/ssh/sshd_config`:21 => Port 4242
+-	`/etc/ssh/sshd_config`:40 => PermitRootLogin no
+
+Una vez hecho el cambio y guardado el archivo, nos dirigiremos al fichero `/etc/ssh/ssh_config` y modificaremos la siguiente línea:
+-	`/etc/ssh/ssh_config`:38 => Port 4242
+
+Aunque estos dos ficheros se encargan de la configuración del servicio, debemos indicarle a SELinux este cambio. Para ello, ejecutaremos el comando `semanage port -a -t ssh_port_t -p tcp puerto`, siendo puerto el que acabamos de poner.
+
+Si al ejecutar el comando obtenemos el siguiente mensaje de error
+
+	-bash: semanage: command not found
+
+Buscaremos las dependencias del paquete `semanage` con el comando `yum provides /usr/sbin/semanage`.
+
+![Semanage Dependencies](../../../../img/42cursus/Born2beroot/semanage_install.png)
+
+Sabiendo esto, instalaremos dichas dependencias con el comando `yum install policycoreutils-python`
 
 ### Firewalld
 #### Configuración
@@ -215,17 +237,52 @@ Para ello, crearemos el archivo `/root/monitoring.sh` y pondremos lo siguiente:
 
 	#! /bin/bash
 
+	# OS info
 	arch=$(uname -p)
 	kernel=$(uname -sr)
+
+	# CPU info
 	physCPU=$(lscpu | awk 'FNR==12 {print $4}')
 	virtCPU=$(lscpu | awk 'FNR==11 {print $4}')
-	ramTot=$(awk '/MemTotal/ ${print $2}' /proc/meminfo)
-	ramAva=$(awk '/MemAvailable/ ${print $2}' /proc/meminfo)
+
+	# RAM info
+	ramTot=$(awk '/MemTotal/ {printf \"$.2f\", $2 / 1024 / 1024}' /proc/meminfo)
+	ramAva=$(awk '/MemAvailable/ {printf \"$.2f\", $2 / 1024 / 1024}' /proc/meminfo)
 	ramUse=$(awk "BEGIN {print ${ramTot} - ${ramAva}}")
+	ramPercentage=$(awk "BEGIN {printf \"$.2f\" ${ramUse} / ${ramTot} * 100})
+
+
+	# Disk info
 	diskTot=$(lsblk -b | awk '/sda/ {print $4}' | awk 'NR==1')
 	diskAva=$(df --block-size=1 | awk 'FNR==5 {print $4}')
 	diskUse=$(awk "BEGIN {print ${diskTot} - ${diskAva}}")
 
+	# Last boot
+	lstBoot=$(who -b | awk '{print $3, $4}')
+
+	# User count
+	usrCount=$(cat /etc/passwd | wc -l)
+
+	# Network info
+	ipv4=$(ip a | awk '/inet/' | awk 'NR==3 {print $2}' | awk -F'/' '{print $1}')
+	ipv6=$(ip a | awk '/inet/' | awk 'NR==4 {print $2}' | awk -F'/' '{print $1}')
+
+
+	wall -n "	System info
+		# Architecture:		${arch}
+		# Kernel:			${kernel}
+		# CPU Physical:		${physCPU}
+		# vCPU:				${virtCPU}
+		# Memory Usage:		${ramUse} / ${ramTot} MB (${} %)
+		# Disk Usage:		${} / ${} GB (${} %)
+		# CPU load:			${} %
+		# Last boot:		${lstBoot}
+		# LVM use:			${}
+		# TCP Connections:	${} ESTABLISHED
+		# User log:			${usrCount}
+		# Network:			IP ${ipv4} (${ipv6})
+		# Sudo:				${} cmd
+	"
 	echo -e "\t# Architecture:\t" ${arch}
 	echo -e "\t# Kernel:\t" ${kernel}
 	echo -e "\t# CPU Physical:\t" ${physCPU}
