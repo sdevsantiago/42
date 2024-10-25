@@ -177,6 +177,10 @@ Fuente: [https://www.server-world.info/en/note?os=Rocky_Linux_8&p=pam&f=1]()
 ### Sudo
 
 #### Configuración
+
+> [!WARNING]
+> El grupo sudo no existe por defecto en Rocky Linux, se conoce como *wheel*. Para cambiar el nombre del grupo, deberemos ejecutar el comando `groupmod wheel -n sudo`. Deberemos reflejar este mismo cambio en todos los ficheros que hagan uso del grupo *wheel* (ej. `/etc/sudoers`).
+
 Toda la configuración referente al comando `sudo` se encuentra disponible en el fichero `/etc/sudoers`.
 
 > [!WARNING]
@@ -237,56 +241,63 @@ Para ello, crearemos el archivo `/root/monitoring.sh` y pondremos lo siguiente:
 
 	#! /bin/bash
 
+	#													   #  ####
+	#	login:	sede-san								 # #     #
+	#	email:	sede-san@student.42madrid.com			####  # 
+	#													   #  ####
+
 	# OS info
-	arch=$(uname -p)
+	architecture=$(uname -p)
 	kernel=$(uname -sr)
 
 	# CPU info
-	physCPU=$(lscpu | awk 'FNR==12 {print $4}')
-	virtCPU=$(lscpu | awk 'FNR==11 {print $4}')
+	cpuCores=$(lscpu | awk 'FNR==12 {print $4}')
+	cpuThreads=$(lscpu | awk 'FNR==11 {print $4}')
+	cpuLoad=$(awk '/cpu' /proc/stat | awk 'NR==1 {printf "%.2f", 100-(($5*100)/($2+$3+$4+$5+$6+$7+$8+$9))}')
 
 	# RAM info
-	ramTot=$(awk '/MemTotal/ {printf \"$.2f\", $2 / 1024 / 1024}' /proc/meminfo)
-	ramAva=$(awk '/MemAvailable/ {printf \"$.2f\", $2 / 1024 / 1024}' /proc/meminfo)
-	ramUse=$(awk "BEGIN {print ${ramTot} - ${ramAva}}")
-	ramPercentage=$(awk "BEGIN {printf \"$.2f\" ${ramUse} / ${ramTot} * 100})
-
+	ramTotal=$(free --mega | awk '/Mem/ {print $2}')
+	ramUsed=$(free --mega | awk '/Mem/ {print $3}')
+	ramPercentage=$(awk "BEGIN {printf \"$.2f\", ${ramUsed}/${ramTotal}*100}")
 
 	# Disk info
-	diskTot=$(lsblk -b | awk '/sda/ {print $4}' | awk 'NR==1')
-	diskAva=$(df --block-size=1 | awk 'FNR==5 {print $4}')
-	diskUse=$(awk "BEGIN {print ${diskTot} - ${diskAva}}")
+	diskTotal=$(df --block-size=1GB | awk '/root/ {print $2}')
+	diskUsed=$(df --block-size=1GB | awk '/root/ {print $3}')
+	diskPercentage=$(df --block-size=1GB | awk '/root/ {print $5}')
 
 	# Last boot
-	lstBoot=$(who -b | awk '{print $3, $4}')
+	lastBoot=$(who -b | awk '{print $3, $4}')
+
+	# LVM used
+	lvmUsed=$(if [ $(lsblk | awk '/lvm/' | wc -l) -gt 0 ]; then echo "yes"; else echo "no"; fi)
+
+	# TCP/IP connections
+	tcp=$(ss -s | awk '{print $4}' | head -n 1)
 
 	# User count
-	usrCount=$(cat /etc/passwd | wc -l)
+	userCount=$(cat /etc/passwd | wc -l)
 
 	# Network info
 	ipv4=$(ip a | awk '/inet/' | awk 'NR==3 {print $2}' | awk -F'/' '{print $1}')
 	ipv6=$(ip a | awk '/inet/' | awk 'NR==4 {print $2}' | awk -F'/' '{print $1}')
 
+	# Sudo commmands
+	sudoCount=$(awk '/COMMAND/' /var/log/sudo/sudo.log | wc -l)
 
-	wall -n "	System info
-		# Architecture:		${arch}
-		# Kernel:			${kernel}
-		# CPU Physical:		${physCPU}
-		# vCPU:				${virtCPU}
-		# Memory Usage:		${ramUse} / ${ramTot} MB (${} %)
-		# Disk Usage:		${} / ${} GB (${} %)
-		# CPU load:			${} %
-		# Last boot:		${lstBoot}
-		# LVM use:			${}
-		# TCP Connections:	${} ESTABLISHED
-		# User log:			${usrCount}
-		# Network:			IP ${ipv4} (${ipv6})
-		# Sudo:				${} cmd
+	wall -n "		=========================> SYSTEM INFO <=========================
+		| # Architecture:	${architecture}
+		| # Kernel:				${kernel}
+		| # CPU Physical:		${cpuCores}
+		| # vCPU:				${cpuThreads}
+		| # Memory Usage:		${ramUsed} / ${ramTotal} MB (${ramPercentage}%)
+		| # Disk Usage:			${diskUsed} / ${diskTotal} GB (${diskPercentage})
+		| # CPU load:			${cpuLoad} %
+		| # Last boot:			${lastBoot}
+		| # LVM use:			${lvmUsed}
+		| # TCP Connections:	${tcp} ESTABLISHED
+		| # User log:			${userCount}
+		| # Network:			IP ${ipv4} (${ipv6})
+		| # Sudo:				${sudoCount} cmds
+		==================================================================
 	"
-	echo -e "\t# Architecture:\t" ${arch}
-	echo -e "\t# Kernel:\t" ${kernel}
-	echo -e "\t# CPU Physical:\t" ${physCPU}
-	echo -e "\t# vCPU:\t\t" ${virtCPU}
-	echo -e "\t# Memory Usage:\t" $(awk "BEGIN {printf \"%.2f / %.2f MB (%.2f%%)\", ${ramUse} / 1024, ${ramUse} / 1024, ${ramUse} / ${ramTot} * 100}")
-
 ## 🅱️ Parte bonus
