@@ -6,31 +6,28 @@
 	- [📋 Tabla de contenidos](#-tabla-de-contenidos)
 	- [👨🏻‍💻 Hipervisor](#-hipervisor)
 	- [💿 Sistema operativo](#-sistema-operativo)
-	- [💻 Configuración de la máquina](#-configuración-de-la-máquina)
+	- [💻 Configuración de la máquina virtual](#-configuración-de-la-máquina-virtual)
 	- [📥 Instalación](#-instalación)
-		- [🌍 Localización](#-localización)
-		- [🧑🏻 Ajustes de usuario](#-ajustes-de-usuario)
-		- [📦 Software](#-software)
-		- [💾 Sistema](#-sistema)
 	- [💯 Parte obligatoria](#-parte-obligatoria)
 		- [Gestor de paquetes](#gestor-de-paquetes)
 		- [SELinux (Security-Enhanced Linux)](#selinux-security-enhanced-linux)
 			- [Configuración](#configuración)
 		- [LVM (Logical Volume Manager)](#lvm-logical-volume-manager)
-			- [Configuración](#configuración-1)
 		- [SSH (Secure Shell)](#ssh-secure-shell)
-			- [Configuración](#configuración-2)
+			- [Configuración](#configuración-1)
 		- [Firewalld](#firewalld)
-			- [Configuración](#configuración-3)
-		- [Hostname](#hostname)
-			- [Configuración](#configuración-4)
-		- [Política de contraseñas](#política-de-contraseñas)
-			- [Configuración](#configuración-5)
-		- [Sudo](#sudo)
-			- [Configuración](#configuración-6)
 			- [Defensa](#defensa)
+		- [Hostname](#hostname)
+			- [Configuración](#configuración-2)
+		- [Política de contraseñas](#política-de-contraseñas)
+			- [Configuración](#configuración-3)
+		- [Sudo](#sudo)
+			- [Configuración](#configuración-4)
+			- [Defensa](#defensa-1)
 		- [Script](#script)
 			- [Creación del script](#creación-del-script)
+		- [Crontab](#crontab)
+			- [Configuración](#configuración-5)
 	- [🅱️ Parte bonus](#️-parte-bonus)
 
 ## 👨🏻‍💻 Hipervisor
@@ -39,27 +36,35 @@
 ## 💿 Sistema operativo
 Se ha decidido realizar este proyecto con [Rocky Linux v9.4](https://rockylinux.org/) utilizando la `minimal.iso` como imagen del sistema operativo.
 
-## 💻 Configuración de la máquina
+## 💻 Configuración de la máquina virtual
 Se recomienda configurar 2GB (2048 MB) de RAM y 2 CPUs como mínimo.
 ![Hardware Settings](../../../../img/42cursus/Born2beroot/hw_settings.png)
-El disco se reserva de manera dinámica.
+El disco se reserva de manera dinámica. De esta manera, aunque indiquemos que nuestro disco tendrá 40 GB de almacenamiento, solo ocupará el espacio que vaya usando, hasta 40 GB.
 ![Disk Settings](../../../../img/42cursus/Born2beroot/disk_settings.png)
 
 ## 📥 Instalación
-Los ajustes de localización se dejarán a gusto del estudiante, sin embargo, el resto de ajustes, se deben dejar como se muestra en la imagen, siendo el nombre del usuario el login del estudiante.
-![Installation Settings](../../../../img/42cursus/Born2beroot/install_settings.png)
+La configuración de usuarios la haremos de la siguiente manera:
+-	Habilitaremos el usuario root (la contraseña la cambiaremos a lo largo de la actividad).
+![Root Password](../../../../img/42cursus/Born2beroot/root_password.png)
+-	Crearemos otro usuario usando nuestro login como nombre (la contraseña la cambiaremos a lo largo de la actividad). Además, deberemos incluir a este usuario en los grupos *sudo* (grupo de administradores) y *user42*. Para añadirlo a este último en la instalación del sistema operativo, deberemos pinchar en el botón de *Advanced...*
+![User Creation](../../../../img/42cursus/Born2beroot/user_creation.png)
+Al hacer esto, se nos abrirá una nueva pestaña de configuración avanzada. Ahí indicaremos los grupos en los que queremos que nuestro nuevo usuario esté. En sistemas Linux, cada grupo lleva asignado un código único (GID) que deberemos especificar entre paréntesis, en nuestro caso indicaremos el 4242, puesto que los 1000 primeros (0-999) suelen estar reservados. El grupo *wheel* hace referencia al grupo de administradores por defecto, nos encargaremos de eso más tarde.
+![Advanced User Configuration](../../../../img/42cursus/Born2beroot/advanced_user_configuration.png)
+> [!NOTE]
+> No se recomienda asignar GIDs por encima del 60000.
 
-### 🌍 Localización
-Estos ajustes se dejarán a gusto del estudiante.
+La práctica nos indica que debemos crear 2 particiones (o 5 si hacemos las partes bonus, como será en el caso de esta guía) cifradas usando LVM. Para ello, accederemos a la configuración de almacenamiento y realizaremos los siguientes pasos:
+-	Seleccionamos el disco en el que queramos instalar el sistema operativo, en nuestro caso  el que hemos instalado. Para poder acceder al cifrado y particionado, deberemos configurar el almacenamiento como *Personalizado* o *Custom*.
+![Installation Destination](../../../../img/42cursus/Born2beroot/installation_destination.png)
+Al presionar el botón de *Done*, nos pasará a la configuración de las particiones. En nuestro caso, la realizaremos de la siguiente manera:
+![Manual Partitioning](../../../../img/42cursus/Born2beroot/manual_partitioning.png)
+Al haber seleccionado la casilla de *Encrypt* para encriptar el disco:
+![Disk Encryption Passphrase](../../../../img/42cursus/Born2beroot/disk_encryption_passphrase.png)
+Kdump requiere de configuración adicional al cifrar el disco (este paso es necesario para poder hacer la instalación, el subject no pide configurar esta herramienta):
+-	Para ello, habilitaremos la reserva de memoria automática:
+![Kdump](../../../../img/42cursus/Born2beroot/kdump.png)
 
-### 🧑🏻 Ajustes de usuario
-Deberemos configurar el usuario root y otro con el login como nombre.
-
-### 📦 Software
-Mantendremos la configuración por defecto.
-
-### 💾 Sistema
-Deberemos seleccionar el disco que hayamos configurado previamente como disco por defecto.
+Una vez haya quedado todo configurado, presionaremos el botón de *Begin installation* para instalar el sistema operativo con toda la configuración seleccionada.
 
 ## 💯 Parte obligatoria
 
@@ -79,7 +84,7 @@ En resumen, SELinux otorga una mayor seguridad frente a las amenazas con respect
 #### Configuración
 Para configurar SELinux, deberemos acceder al archivo `/etc/sysconfig/selinux`. Una vez dentro, nos aseguraremos de que los siguientes parámetros aparecen como se muestra a continuación:
 -	SELINUX=enforcing
--	SELINUXTYPE=targeting
+-	SELINUXTYPE=targeted
 
 > [!NOTE]
 > Se recomienda configurar el modo de funcionamiento en *permissive* durante la configuración inicial, ya que el sistema puede tener recursos mal iniciados que no permitan el proceso de arranque.
@@ -93,11 +98,9 @@ Fuente: [https://www.redhat.com/es/topics/linux/what-is-selinux]()
 
 ### LVM (Logical Volume Manager)
 El almacenamiento tradicional se basa en el espacio individual de cada disco. LVM, sin embargo, administra el espacio combinando la capacidad de los discos disponibles. De esta manera, LVM considera el almacenamiento de todos los discos como una capacidad total. Esto se consigue designando los discos de almacenamieno como *Volúmenes Físicos (PV)*, o capacidad que puede usar LVM. A continuación, estos PVs son añadidos a uno o más *Grupos de Volúmenes (VG)*. Por último, estos VGs son añadidos a uno o más *Volúmenes Lógicos (LV)*, los cuales son tratados como particiones tradicionales.
-![LVM Example](../../../../img/42cursus/Born2beroot/basic-lvm-volume.png)
+![LVM Example](../../../../img/42cursus/Born2beroot/basic_lvm_volume.png)
 
 Fuente: [https://www.redhat.com/sysadmin/lvm-vs-partitioning]()
-
-#### Configuración
 
 ### SSH (Secure Shell)
 SSH es un protocolo que permite conectar dos máquinas mediante un canal cifrado.
@@ -120,12 +123,34 @@ Si al ejecutar el comando obtenemos el siguiente mensaje de error
 
 Buscaremos las dependencias del paquete `semanage` con el comando `yum provides /usr/sbin/semanage`.
 
-![Semanage Dependencies](../../../../img/42cursus/Born2beroot/semanage_install.png)
+![Semanage Dependencies](../../../../img/42cursus/Born2beroot/semanage_dependencies.png)
 
-Sabiendo esto, instalaremos dichas dependencias con el comando `yum install policycoreutils-python`
+Sabiendo esto, instalaremos dichas dependencias con el comando `yum install policycoreutils-python-utils`. Una vez instaladas las dependencias, no debería haber problemas al correr el comando de nuevo.
+
+Una vez le hayamos indicado a SELinux el nuevo puerto sobre el que correrá nuestro servicio, deberemos abrir el puerto con el comando `firewall-cmd --zone=public –add-port=puerto/tcp --permanent`. Tras hacerlo, reiniciaremos el firewall y el servicio con los comandos `firewall-cmd --reload` y `systemctl restart sshd`. Al estar corriendo nuestro servidor en un entorno "aislado" a nivel de red, deberemos acudir a la configuración de VirtualBox para poder conectar nuestro equipo con la máquina virtual de la siguiente manera:
+![Port Forwarding](../../../../img/42cursus/Born2beroot/port_forwarding.png)
+![Port Forwarding Rules](../../../../img/42cursus/Born2beroot/port_forwarding_rules.png)
+
+> [!WARNING]
+> Comprueba que el puerto 4242 funcione, en 42 Madrid hemos llegado a la conclusión de que el puerto no funciona correctamente. Si es tu caso, prueba a cambiarlo a otro (ej. 4141).
+
+Fuente: [https://jumpcloud.com/blog/how-to-configure-secure-ssh-server-rocky-linux]()
 
 ### Firewalld
-#### Configuración
+Los firewalls, o cortafuegos en español, son aplicaciones que actúan a nivel de red abriendo o cerrando puertos para permitir el funcionamiento de otras aplicaciones. Podríamos decir que es como un "antivirus de red". Lo que hemos hecho en el apartado anterior ha sido decirle a nuestro firewall que, abriera el puerto que le hemos indicado para que el protocolo *ssh* pueda procesar todo lo que llega por ahí.
+
+Para verificar qué puertos tenemos abiertos, ejecutaremos el comando `firewall-cmd --list-all`, lo que nos dará una salida similar a esta:
+
+#### Defensa
+Durante la defensa, se nos pedirá abrir y cerrar el puerto 8080. Para ello, deberemos realizar los siguientes pasos:
+-	Abrimos el puerto con el comando `firewall-cmd --zone=public --add-port=8080/tcp --permanent`
+-	Reiniciamos el firewall para habilitar dicho cambio con los comandos `firewall-cmd --reload` y `systemctl restart sshd`
+-	Listamos todos los puertos abiertos con el comando `firewall-cmd --list-all`
+-	Cerramos el puerto con el comando `firewall-cmd --remove-port=8080/tcp`
+-	Confirmamos el cambio con el comando `firewall-cmd --runtime-to-permanent`
+-	Listamos de nuevo los puertos para confirmar que se cerró con el comando `firewall-cmd --list-all`
+
+Fuente: [https://docs.fedoraproject.org/en-US/quick-docs/firewalld/]()
 
 ### Hostname
 El hostname es el nombre por el que se conoce un equipo dentro de una red. Esto se utiliza con el fin de identificar más fácilmente un equipo dentro de una red.
@@ -142,17 +167,18 @@ Será necesario reiniciar el equipo para poder ver los cambios. Podemos hacer es
 Fuente: [https://www.geeksforgeeks.org/hostnamectl-command-in-linux-with-examples/]()
 
 ### Política de contraseñas
+Una política de contraseñas es un conjunto de reglas que se aplican a la hora de crear o cambiar contraseñas con el objetivo de evitar la creación de contraseñas fáciles de descifrar por un tercero. Si bien, una contraseña con una política fuerte la hace muy poco probable a ser descifrada, hay que encontrar un balance entre seguridad y comodidad pues, muchos usuarios se podrían ver abrumados por tantas reglas.
 
 #### Configuración
 -	Tu contraseña debe expirar cada 30 días.
-	-	`/etc/login.defs` => PASS_MAX_DAYS 30 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	`/etc/login.defs`:131 => PASS_MAX_DAYS 30 *(este ajuste solo aplica para los nuevos usuarios)*
 	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -M 30 usuario`
 -	El número mínimo de días permitido antes de modificar una contraseña deberá ser 2.
-	-	`/etc/login.defs` => PASS_MIN_DAYS 2 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	`/etc/login.defs`:132 => PASS_MIN_DAYS 2 *(este ajuste solo aplica para los nuevos usuarios)*
 	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -m 2 usuario`
 -	El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
-	-	`/etc/login.defs` => PASS_WARN_AGE 7 *(este ajuste solo aplica para los nuevos usuarios)*
-	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -W 30 usuario`
+	-	`/etc/login.defs`:133 => PASS_WARN_AGE 7 *(este ajuste solo aplica para los nuevos usuarios)*
+	-	Para usuarios ya existentes, se deberá utilizar el comando `chage -W 7 usuario`
 -	Tu contraseña debe tener como mínimo 10 caracteres de longitud. Debe contener una mayúscula, una minúscula y un número. Por cierto, no puede tener más de 3 veces consecutivas el mismo carácter.
 	-	`/etc/security/pwquality.conf`:11 => minlen = 10
 	-	`/etc/security/pwquality.conf`:20 => ucredit = -1
@@ -175,6 +201,7 @@ Podremos consultar la caducidad de las contraseñas de un usuario concreto con e
 Fuente: [https://www.server-world.info/en/note?os=Rocky_Linux_8&p=pam&f=1]()
 
 ### Sudo
+Sudo es un programa esencial a día de hoy en los sistemas Linux, y que poco a poco se va integrando a otros sistemas operativos como Windows, el cual permite ejecutar comandos como administrador sin tener que ser el usuario root específicamente.
 
 #### Configuración
 
@@ -193,10 +220,10 @@ Toda la configuración referente al comando `sudo` se encuentra disponible en el
 	-	Si queremos que, en vez de mostrar un mensaje personalizado, la máquina nos insulte, deberemos habilitar el siguiente ajuste (habilitando esta configuración, se ignora badpass_message): `/etc/sudoers` => Defaults insults
 -	Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio /var/log/sudo/.
 	-	`/etc/sudoers` => Defaults logfile="/var/log/sudo/sudo.log"
-	-	`/etc/sudoers` => Defaults iolog_dir="/var/log/sudo"
+	-	`/etc/sudoers` => Defaults iolog_dir="/var/log/sudo/iolog"
 	-	`/etc/sudoers` => Defaults log_input, log_output
 > [!NOTE]
-> Si el directorio no existe, deberemos crearlo nosotros a mano (`mkdir -p /var/log/sudo`).
+> Si el directorio no existe, deberemos crearlo nosotros a mano (`mkdir -p /var/log/sudo/iolog`).
 -	El modo TTY debe estar activado por razones de seguridad.
 	-	`/etc/sudoers` => Defaults requiretty
 -	Por seguridad, los directorios utilizables por sudo deben estar restringidos. Por ejemplo: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
@@ -240,64 +267,78 @@ El subject requiere que realicemos un script que, cada 10 minutos, muestre la si
 Para ello, crearemos el archivo `/root/monitoring.sh` y pondremos lo siguiente:
 
 	#! /bin/bash
-
-	#													   #  ####
-	#	login:	sede-san								 # #     #
-	#	email:	sede-san@student.42madrid.com			####  # 
-	#													   #  ####
-
+	
+	#                                                     #  ####
+	#       login:  sede-san                       		# #     #
+	#       email:  sede-san@student.42madrid.com      ####  #
+	#                                                     #  ####
+	
 	# OS info
 	architecture=$(uname -p)
 	kernel=$(uname -sr)
-
+	
 	# CPU info
 	cpuCores=$(lscpu | awk 'FNR==12 {print $4}')
 	cpuThreads=$(lscpu | awk 'FNR==11 {print $4}')
-	cpuLoad=$(awk '/cpu' /proc/stat | awk 'NR==1 {printf "%.2f", 100-(($5*100)/($2+$3+$4+$5+$6+$7+$8+$9))}')
-
+	cpuLoad=$(awk '/cpu/' /proc/stat | awk 'NR==1 {printf "%.2f", 100-(($5*100)/($2+$3+$4+$5+$6+$7+$8+$9))}')
+	
 	# RAM info
 	ramTotal=$(free --mega | awk '/Mem/ {print $2}')
 	ramUsed=$(free --mega | awk '/Mem/ {print $3}')
-	ramPercentage=$(awk "BEGIN {printf \"$.2f\", ${ramUsed}/${ramTotal}*100}")
-
+	ramPercentage=$(awk "BEGIN {printf \"%.2f\", ${ramUsed}/${ramTotal}*100}")
+	
 	# Disk info
-	diskTotal=$(df --block-size=1GB | awk '/root/ {print $2}')
-	diskUsed=$(df --block-size=1GB | awk '/root/ {print $3}')
-	diskPercentage=$(df --block-size=1GB | awk '/root/ {print $5}')
-
+	diskTotal=$(df --block-size=1GB --total | awk '/total/ {print $2}')
+	diskUsed=$(df --block-size=1GB --total | awk '/total/ {print $3}')
+	diskPercentage=$(df --block-size=1GB --total | awk '/total/ {print $5}')
+	
 	# Last boot
 	lastBoot=$(who -b | awk '{print $3, $4}')
-
+	
 	# LVM used
 	lvmUsed=$(if [ $(lsblk | awk '/lvm/' | wc -l) -gt 0 ]; then echo "yes"; else echo "no"; fi)
-
+	
 	# TCP/IP connections
-	tcp=$(ss -s | awk '{print $4}' | head -n 1)
-
+	tcp=$(/usr/sbin/ss | awk '/tcp/ {print $4}' | wc -l)
+	
 	# User count
 	userCount=$(cat /etc/passwd | wc -l)
-
+	
 	# Network info
-	ipv4=$(ip a | awk '/inet/' | awk 'NR==3 {print $2}' | awk -F'/' '{print $1}')
-	ipv6=$(ip a | awk '/inet/' | awk 'NR==4 {print $2}' | awk -F'/' '{print $1}')
-
+	ipv4=$(/usr/sbin/ip a | awk '/inet/' | awk NR==3 | awk '{print $2}' | awk -F'/' '{print $1}')
+	macAddress=$(/usr/sbin/ip a | awk '/link\/ether/ {print $2}')
+	
 	# Sudo commmands
 	sudoCount=$(awk '/COMMAND/' /var/log/sudo/sudo.log | wc -l)
+	
+	wall -n "       =========================> SYSTEM INFO <=========================
+	        | # Architecture:       ${architecture}                                 |
+	        | # Kernel:             ${kernel}       |
+	        | # CPU Cores:          ${cpuCores}                                     |
+	        | # CPU Threads:        ${cpuThreads}                                   |
+	        | # CPU load:           ${cpuLoad} %                                    |
+	        | # Memory Usage:       ${ramUsed} / ${ramTotal} MB (${ramPercentage} %)                        |
+	        | # Disk Usage:         ${diskUsed} / ${diskTotal} GB (${diskPercentage})                               |
+	        | # Last boot:          ${lastBoot}                     |
+	        | # LVM use:            ${lvmUsed}                                      |
+	        | # TCP Connections:    ${tcp} ESTABLISHED                              |
+	        | # User log:           ${userCount}                                    |
+	        | # Network:            IP ${ipv4} (${ipv6})    |
+	        | # Sudo:               ${sudoCount} cmds                                       |
+	        ================================================================="
 
-	wall -n "		=========================> SYSTEM INFO <=========================
-		| # Architecture:	${architecture}
-		| # Kernel:				${kernel}
-		| # CPU Physical:		${cpuCores}
-		| # vCPU:				${cpuThreads}
-		| # Memory Usage:		${ramUsed} / ${ramTotal} MB (${ramPercentage}%)
-		| # Disk Usage:			${diskUsed} / ${diskTotal} GB (${diskPercentage})
-		| # CPU load:			${cpuLoad} %
-		| # Last boot:			${lastBoot}
-		| # LVM use:			${lvmUsed}
-		| # TCP Connections:	${tcp} ESTABLISHED
-		| # User log:			${userCount}
-		| # Network:			IP ${ipv4} (${ipv6})
-		| # Sudo:				${sudoCount} cmds
-		==================================================================
-	"
+Si lo hemos hecho bien, deberíamos ver algo similar a esto al ejecutar el script:
+![Monitoring](../../../../img/42cursus/Born2beroot/monitoring.png)
+
+### Crontab
+Crontab es un programa que actúa en segundo plano que permite ejecutar programas en un cierto intervalo de tiempo.
+
+El subject requiere que ejecutemos el script que acabamos de crear cada 10 minutos.
+
+#### Configuración
+Para configurar el crontab, ejecutaremos el comando `crontab -e`, editando así el cron del usuario actual. Si quisiéramos editar el cron de algún otro usuario, deberemos ejecutar el comando `crontab -u usuario -e`.
+
+Una vez dentro, deberemos incluir la siguiente línea en el fichero:
+	*/10	*	*	*	*	bash ruta-al-script
+
 ## 🅱️ Parte bonus
