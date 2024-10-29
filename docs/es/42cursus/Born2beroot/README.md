@@ -28,6 +28,7 @@
 			- [Creación del script](#creación-del-script)
 		- [Crontab](#crontab)
 			- [Configuración](#configuración-5)
+	- [🏁 Entrega del proyecto](#-entrega-del-proyecto)
 	- [🅱️ Parte bonus](#️-parte-bonus)
 
 ## 👨🏻‍💻 Hipervisor
@@ -127,7 +128,7 @@ Buscaremos las dependencias del paquete `semanage` con el comando `yum provides 
 
 Sabiendo esto, instalaremos dichas dependencias con el comando `yum install policycoreutils-python-utils`. Una vez instaladas las dependencias, no debería haber problemas al correr el comando de nuevo.
 
-Una vez le hayamos indicado a SELinux el nuevo puerto sobre el que correrá nuestro servicio, deberemos abrir el puerto con el comando `firewall-cmd --zone=public –add-port=puerto/tcp --permanent`. Tras hacerlo, reiniciaremos el firewall y el servicio con los comandos `firewall-cmd --reload` y `systemctl restart sshd`. Al estar corriendo nuestro servidor en un entorno "aislado" a nivel de red, deberemos acudir a la configuración de VirtualBox para poder conectar nuestro equipo con la máquina virtual de la siguiente manera:
+Una vez le hayamos indicado a SELinux el nuevo puerto sobre el que correrá nuestro servicio, deberemos abrir el puerto con el comando `firewall-cmd --zone=public --add-port=puerto/tcp --permanent`. Tras hacerlo, reiniciaremos el firewall y el servicio con los comandos `firewall-cmd --reload` y `systemctl restart sshd`. Al estar corriendo nuestro servidor en un entorno "aislado" a nivel de red, deberemos acudir a la configuración de VirtualBox para poder conectar nuestro equipo con la máquina virtual de la siguiente manera:
 ![Port Forwarding](../../../../img/42cursus/Born2beroot/port_forwarding.png)
 ![Port Forwarding Rules](../../../../img/42cursus/Born2beroot/port_forwarding_rules.png)
 
@@ -341,4 +342,13 @@ Para configurar el crontab, ejecutaremos el comando `crontab -e`, editando así 
 Una vez dentro, deberemos incluir la siguiente línea en el fichero:
 	*/10	*	*	*	*	bash ruta-al-script
 
+> [!NOTE]
+> Puedes consultar la configuración del crontab con el comando `crontab -l`, o `crontab -u usuario -l` si quisiéramos consultar la de otro usuario.
+
+## 🏁 Entrega del proyecto
+Una vez hayas finalizado todo, asegúrate de apagar la máquina virtual correctamente. Tras esto, abre un terminal y accede a la ruta donde tengas guardada la máquina virtual. Ahí, ejecutaremos el comando `sha1sum disco-virtual.vdi`. El comando nos devolverá un código alfanumérico y el nombre del archivo, nos copiaremos el código y lo pegaremos en el repositorio de entrega bajo el archivo `signature.txt` y realizaremos la entrega.
+
+Para evitar que el código cambie, deberemos hacer todas las evaluaciones sobre una copia de la máquina. Para ello, accederemos a  la pestaña principal de VirtualBox y 
+
 ## 🅱️ Parte bonus
+*No hecha*
