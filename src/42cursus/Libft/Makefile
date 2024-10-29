@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/13 13:35:23 by sede-san         ###   ########.fr        #
+#    Updated: 2024/10/29 19:25:40 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,7 @@ $(BONUS_NAME): $(OBJ_B)
 
 # Clean object files
 clean:
-	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_A)
+	rm -f $(OBJ_MP1) $(OBJ_MP2) $(OBJ_B) $(OBJ_A)
 
 # Clean bonus and library
 fclean: clean
