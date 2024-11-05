@@ -6,12 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:13:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/05 19:25:00 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/05 21:48:23 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* Counts the number of digits in the integer N with the base.  */
 static size_t	count_digits(int n, int base_len)
 {
 	size_t	digits;
@@ -29,6 +30,7 @@ static size_t	count_digits(int n, int base_len)
 	return (digits);
 }
 
+/* Converts an integer into a specific base in form of a string.  */
 char	*ft_itoa_base(int n, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);
