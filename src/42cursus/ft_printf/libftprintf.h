@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:21:23 by sede-san          #+#    #+#             */
-/*   Updated: 2024/10/30 19:52:05 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:17:38 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Libft/libft.h"
 # include <stdarg.h>
+# include <stdint.h>
 
 int	ft_printf(char const *format, ...);
 
