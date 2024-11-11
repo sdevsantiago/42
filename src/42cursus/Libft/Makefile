@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/11 19:38:50 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/11 20:00:26 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC_B= \
 
 # Aditional functions
 SRC_A= \
+	ft_free.c \
 	ft_isspace.c \
 	ft_itoa_base.c \
 	ft_putchar.c \
