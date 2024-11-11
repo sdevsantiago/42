@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:13:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/05 21:48:23 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:58:38 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_itoa_base(int n, const char *base)
 	const size_t	base_len = ft_strlen(base);
 	char			*num_str;
 	size_t			digits;
-	
+
 	digits = count_digits(n, base_len);
 	num_str = (char *)malloc((digits + 1) * sizeof(char));
 	if (!num_str)
