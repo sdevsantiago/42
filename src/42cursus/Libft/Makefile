@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/11 20:00:26 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/12 20:54:45 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,8 @@ SRC_A= \
 	ft_putstr.c \
 	ft_strncpy.c \
 	ft_swap.c \
-	ft_uitoa.c
+	ft_uitoa.c \
+	ft_uitoa_base.c
 
 # ****************************** Object files ******************************** #
 # Mandatory part 1
