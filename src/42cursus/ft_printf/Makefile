@@ -6,13 +6,13 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 19:07:42 by sede-san          #+#    #+#              #
-#    Updated: 2024/10/30 19:19:28 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/15 10:04:23 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ******************************* Output files ******************************* #
 # Library name
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 # ************************** Compilation variables *************************** #
 # Compiler
@@ -24,6 +24,22 @@ CFLAGS = -Wall -Wextra -Werror
 # ****************************** Source files ******************************** #
 SRC = \
 ft_printf.c
+
+CHARACTER_STRING_PATH = character_string_types
+
+SRC += \
+$(CHARACTER_STRING_PATH)/ft_printf_putchar.c \
+$(CHARACTER_STRING_PATH)/ft_printf_putstr.c
+
+INTEGER_PATH = integer_types
+
+SRC += \
+$(INTEGER_PATH)/ft_printf_int.c
+
+MEMDIR_PATH = memdir_types
+
+SRC += \
+$(MEMDIR_PATH)/ft_printf_putptr.c
 
 # ****************************** Object files ******************************** #
 OBJ = $(SRC:.c=.o)
@@ -37,8 +53,9 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd Libft && make all bonus && mv ./libft.a ../libftprintf.a
+	cd Libft && make all bonus && mv ./libft.a ../$(NAME)
 	ar rcs $(NAME) $(OBJ)
+	mv $(NAME) libftprintf.a
 	
 # Clean object files
 clean:
@@ -48,7 +65,7 @@ clean:
 # Clean object files and library
 fclean: clean
 	cd Libft && make fclean
-	rm -f $(NAME)
+	rm -f libftprintf.a
 	rm -f $(OBJ)
 
 # Recompile
