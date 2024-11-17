@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:58 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/05 19:25:11 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:46:22 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,19 @@ int		ft_lstsize(t_list *lst);
 
 /* *************************** Aditional functions ************************** */
 
+void	ft_free(void **ptr);
 void	ft_putchar(char c);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 void	ft_putstr(char *s);
 void	ft_swap(void *a, void *b);
+int		ft_islower(int c);
 int		ft_isspace(int c);
+int		ft_isupper(int c);
 char	*ft_itoa_base(int n, const char *base);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_uitoa(unsigned int n);
+char	*ft_uitoa_base(unsigned int n, const char *base);
+char	*ft_ultoa_base(unsigned long n, const char *base);
 
 #endif

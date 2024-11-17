@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/05 16:43:18 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/15 09:56:29 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,14 +79,20 @@ SRC_B= \
 
 # Aditional functions
 SRC_A= \
+	ft_free.c \
+	ft_islower.c \
 	ft_isspace.c \
+	ft_itoa_base.c \
+	ft_isupper.c \
 	ft_putchar.c \
 	ft_putendl.c \
 	ft_putnbr.c \
 	ft_putstr.c \
 	ft_strncpy.c \
 	ft_swap.c \
-	ft_uitoa.c
+	ft_uitoa.c \
+	ft_uitoa_base.c \
+	ft_ultoa_base.c
 
 # ****************************** Object files ******************************** #
 # Mandatory part 1

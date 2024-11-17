@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 18:13:02 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/11 19:58:38 by sede-san         ###   ########.fr       */
+/*   Created: 2024/11/12 20:31:15 by sede-san          #+#    #+#             */
+/*   Updated: 2024/11/14 19:38:43 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Counts the number of digits in the integer N with the base.  */
-static size_t	count_digits(int n, int base_len)
+/* Counts the number of digits in the unsigned integer N with the base.  */
+static size_t	count_digits(unsigned int n, size_t base_len)
 {
 	size_t	digits;
 
 	if (n == 0)
 		return (1);
-	else if (n == INT_MIN)
-		n = -n;
 	digits = 0;
 	while (n != 0)
 	{
@@ -30,8 +28,8 @@ static size_t	count_digits(int n, int base_len)
 	return (digits);
 }
 
-/* Converts an integer into a specific base in form of a string.  */
-char	*ft_itoa_base(int n, const char *base)
+/* Converts an unsigned integer into a specific base in form of a string.  */
+char	*ft_uitoa_base(unsigned int n, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);
 	char			*num_str;
