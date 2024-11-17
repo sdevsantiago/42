@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 19:12:48 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/15 09:56:29 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/17 16:54:24 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC_B= \
 # Aditional functions
 SRC_A= \
 	ft_free.c \
+	ft_iscntrl.c \
 	ft_islower.c \
 	ft_isspace.c \
 	ft_itoa_base.c \
@@ -94,7 +95,7 @@ SRC_A= \
 	ft_uitoa_base.c \
 	ft_ultoa_base.c
 
-# ****************************** Object files ******************************** #
+# ****************************** Object files ******************************** #z
 # Mandatory part 1
 OBJ_MP1 = $(SRC_MP1:.c=.o)
 
