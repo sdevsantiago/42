@@ -6,13 +6,13 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:11:28 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/15 09:53:00 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:27:34 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_printf_putptr(intptr_t const ptr)
+int	ft_printf_putptr(uintptr_t const ptr)
 {
 	int		len;
 	char	*ptr_str;

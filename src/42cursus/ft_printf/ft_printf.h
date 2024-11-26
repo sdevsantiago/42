@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:21:23 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/17 14:18:14 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:27:48 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int	ft_printf_putstr(char const *str);
 /* Integer types */
 int	ft_printf_putint(int const n);
 int	ft_printf_putuint(unsigned int const n);
-int ft_printf_putuint_hex(unsigned int const n, const int c);
+int	ft_printf_putuint_oct(unsigned int const n);
+int	ft_printf_putuint_hex(unsigned int const n, int const specifier);
 
 /* Memdir types */
-int	ft_printf_putptr(intptr_t const ptr);
+int	ft_printf_putptr(uintptr_t const ptr);
 
 #endif

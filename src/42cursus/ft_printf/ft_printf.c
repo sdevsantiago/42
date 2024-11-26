@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:23:51 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/15 10:21:35 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:38:16 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	print_specifier(int const specifier, va_list args)
 {
 	int	len;
-	
+
 	if (specifier == 'c')
 		len = ft_printf_putchar(va_arg(args, int));
 	else if (specifier == 's')
@@ -26,12 +26,17 @@ static int	print_specifier(int const specifier, va_list args)
 		len = ft_printf_putuint(va_arg(args, unsigned int));
 	else if (specifier == 'p')
 		len = ft_printf_putptr(va_arg(args, uintptr_t));
+	else if (specifier == 'o')
+		len = ft_printf_putuint_oct(va_arg(args, unsigned int));
 	else if (specifier == 'x' || specifier == 'X')
 		len = ft_printf_putuint_hex(va_arg(args, unsigned int), specifier);
 	else if (specifier == '%')
 		len = ft_printf_putchar('%');
 	else
-		return (-1);
+	{
+		len = ft_printf_putchar('%');
+		len += ft_printf_putchar(specifier);
+	}
 	return (len);
 }
 
@@ -48,6 +53,8 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (!*format)
+				return (-1);
 			len += print_specifier(*format, args);
 		}
 		else

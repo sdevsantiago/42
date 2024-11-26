@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 19:07:42 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/15 10:04:23 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/26 16:26:58 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ $(CHARACTER_STRING_PATH)/ft_printf_putstr.c
 INTEGER_PATH = integer_types
 
 SRC += \
-$(INTEGER_PATH)/ft_printf_int.c
+$(INTEGER_PATH)/ft_printf_putint.c	\
+$(INTEGER_PATH)/ft_printf_putuint.c
 
 MEMDIR_PATH = memdir_types
 
@@ -56,7 +57,7 @@ $(NAME): $(OBJ)
 	cd Libft && make all bonus && mv ./libft.a ../$(NAME)
 	ar rcs $(NAME) $(OBJ)
 	mv $(NAME) libftprintf.a
-	
+
 # Clean object files
 clean:
 	cd Libft && make clean
