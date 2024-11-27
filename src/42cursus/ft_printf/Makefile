@@ -6,7 +6,7 @@
 #    By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 19:07:42 by sede-san          #+#    #+#              #
-#    Updated: 2024/11/26 16:26:58 by sede-san         ###   ########.fr        #
+#    Updated: 2024/11/27 20:00:22 by sede-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,18 +54,19 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd Libft && make all bonus && mv ./libft.a ../$(NAME)
+	$(MAKE) -C Libft all bonus
+	cp Libft/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJ)
 	mv $(NAME) libftprintf.a
 
 # Clean object files
 clean:
-	cd Libft && make clean
+	cd Libft && $(MAKE) clean
 	rm -f $(OBJ)
 
 # Clean object files and library
 fclean: clean
-	cd Libft && make fclean
+	cd Libft && $(MAKE) fclean
 	rm -f libftprintf.a
 	rm -f $(OBJ)
 
