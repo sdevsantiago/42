@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_uint.c                                   :+:      :+:    :+:   */
+/*   ft_printf_putuint.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:22:51 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/26 14:23:13 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/27 20:23:36 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_printf_putuint_oct(unsigned int const n)
 	free(nb);
 	return (len);
 }
-
 
 int	ft_printf_putuint_hex(unsigned int const n, int const specifier)
 {
