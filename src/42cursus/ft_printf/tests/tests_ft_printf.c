@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:43:19 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/27 20:17:39 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:58:13 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ int	main(void)
 	fflush(stdout);
 	printf("\n");
 	fflush(stdout);
-	printf("ft_printf:\t\twww");
+	printf("ft_printf:\t\t");
 	fflush(stdout);
-	len_ft = ft_printf("test%%%ttt");
+	len_ft = ft_printf("test%%%www");
 	printf("\n");
 	fflush(stdout);
 	err += print_result(len_o, len_ft);
