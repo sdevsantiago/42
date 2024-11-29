@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/19 16:54:19 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:14:44 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 // Default buffer size
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# endif
+
+// Check if BUFFER_SIZE is valid
+# if BUFFER_SIZE <= 0
+#  error "BUFFER_SIZE must be greater than 0"
 # endif
 
 # define EOL '\n'
