@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:43:19 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/28 16:58:13 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:37:34 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,6 +350,23 @@ int	main(void)
 	err += print_result(len_o, len_ft);
 	printf("\n");
 	fflush(stdout);
+
+	printf("Original printf:\t");
+	fflush(stdout);
+	len_o = printf("ÁÉÍÓÚáéíóúÑñ\n中文字符测试\n日本語のテスト\n한국어 테스트\nПривет мир");
+	fflush(stdout);
+	printf("\n");
+	fflush(stdout);
+	printf("ft_printf:\t\t");
+	fflush(stdout);
+	len_ft = ft_printf("ÁÉÍÓÚáéíóúÑñ\n中文字符测试\n日本語のテスト\n한국어 테스트\nПривет мир");
+	printf("\n");
+	fflush(stdout);
+	err += print_result(len_o, len_ft);
+	printf("\n");
+	fflush(stdout);
+	
+	
 
 	for (int i = 0; i < 10; i++)
 		printf("%s%2c%s%2c%s%2c", RED_BG, ' ', GREEN_BG, ' ', BLUE_BG, ' ');
