@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:11:28 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/26 14:27:34 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:31:09 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_printf_putptr(uintptr_t const ptr)
 	if (!ptr)
 		return (ft_printf_putstr("(nil)"));
 	ptr_str = ft_ultoa_base((unsigned long int)ptr, "0123456789abcdef");
+	if (!ptr_str)
+		return (0);
 	len = ft_printf_putstr("0x");
 	len += ft_printf_putstr(ptr_str);
 	free(ptr_str);
