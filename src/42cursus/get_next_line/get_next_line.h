@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/29 17:14:44 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/03 20:44:56 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define EOL '\n'
 
-# include <unistd.h>	// read
-# include <stdlib.h>	// malloc, free
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
 
 char	*get_next_line(int fd);

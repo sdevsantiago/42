@@ -17,7 +17,10 @@
 
 #include "get_next_line.h"
 
+// char *_fill_line()
+
 /* Reads the next line from the file pointed by FD. */
+//TODO	Reuse *remaining when BUFFER_SIZE is too big
 char	*get_next_line(int fd)
 {
 	char				*line;
@@ -40,11 +43,11 @@ char	*get_next_line(int fd)
 	i = 0;
 	while (buffer[i] && buffer[i] != EOL)
 		i++;
-	if (i >= len && buffer[i] != EOL)
+	if (i >= len && buffer[i] != EOL && buffer[i])
 	{
 		remaining = (char *)malloc((len + 1) * sizeof(char));
 		ft_strlcpy(remaining, buffer, i + 1);
-		return (ft_strjoin(remaining, get_next_line(fd)));
+		return (get_next_line(fd));
 	}
 	if (i > len)
 	{
@@ -61,51 +64,24 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-	// if (i < len)	// Buffer contains character
-	// {
-	// 	line = (char *)malloc((i + 1) * sizeof(char));
-	// 	ft_strlcpy(line, buffer, i + 2);	// (i+2) => Newline must be returned
-	// 	if (buffer[i])
-	// 	return (line);
-	// }
-	// remaining = calloc(len + 1, sizeof(char));
-	// if (!remaining)
-	// 	return (NULL);
-	// ft_strlcpy(remaining, buffer, len + 1);
-
-// 	if (!buffer)
-// 		return (NULL);
-// 	len = read(fd, buffer, BUFFER_SIZE);
-// 	if (len <= 0)
-// 		return (free(buffer), NULL);
-// 	if (ft_strlen(remaining))
-// 		buffer = ft_strjoin(remaining, buffer);
-// 	i = 0;
-// 	while (i < len && (buffer[i] != EOL && buffer[i] != EOF))
-// 		i++;
-// 	if (i < len)
-// 	{
-// 		remaining = (char *)malloc((ft_strlen(&buffer[i]) + 1) * sizeof(char));
-// 		ft_strlcpy(remaining, &buffer[i], ft_strlen(&buffer[i]));
-// 	}
-// 	line = ft_strjoin(buffer, get_next_line(fd));
-// 	return (free(buffer), line);
-// }
-
 #include <fcntl.h>
-int main(void)
+int main(int argc, char **argv)
 {
-	int		f = open("tests/file.txt", O_RDONLY);
+	int		f;
 	char*	line;
 
+	if (argc != 2)
+	{
+		printf("ERROR. Invalid number of arguments");
+		return (1);
+	}
+	f = open(argv[1], O_RDONLY);
 	while ((line = get_next_line(f)))
 	{
 		printf("%s", line);
-	}
 		free(line);
-	
+	}
+
 	close(f);
-	
-	
 	return (0);
 }
