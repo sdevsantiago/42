@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:43:19 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/03 12:37:34 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:59:51 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,21 @@ int	main(void)
 	printf("ft_printf:\t\t");
 	fflush(stdout);
 	len_ft = ft_printf("test%%%www");
+	printf("\n");
+	fflush(stdout);
+	err += print_result(len_o, len_ft);
+	printf("\n");
+	fflush(stdout);
+
+	printf("Original printf:\t");
+	fflush(stdout);
+	len_o = printf("%s", "");
+	fflush(stdout);
+	printf("\n");
+	fflush(stdout);
+	printf("ft_printf:\t\t");
+	fflush(stdout);
+	len_ft = ft_printf("%s", "");
 	printf("\n");
 	fflush(stdout);
 	err += print_result(len_o, len_ft);
@@ -365,8 +380,7 @@ int	main(void)
 	err += print_result(len_o, len_ft);
 	printf("\n");
 	fflush(stdout);
-	
-	
+
 
 	for (int i = 0; i < 10; i++)
 		printf("%s%2c%s%2c%s%2c", RED_BG, ' ', GREEN_BG, ' ', BLUE_BG, ' ');
@@ -383,6 +397,21 @@ int	main(void)
 	printf("ft_printf:\t\t");
 	fflush(stdout);
 	len_ft = ft_printf("%d", 1234567);
+	printf("\n");
+	fflush(stdout);
+	err += print_result(len_o, len_ft);
+	printf("\n");
+	fflush(stdout);
+
+	printf("Original printf:\t");
+	fflush(stdout);
+	len_o = printf("%d", -1234567);
+	fflush(stdout);
+	printf("\n");
+	fflush(stdout);
+	printf("ft_printf:\t\t");
+	fflush(stdout);
+	len_ft = ft_printf("%d", -1234567);
 	printf("\n");
 	fflush(stdout);
 	err += print_result(len_o, len_ft);
@@ -608,7 +637,7 @@ int	main(void)
 	err += print_result(len_o, len_ft);
 	printf("\n");
 	fflush(stdout);
-	
+
 	char *str3 = ft_strdup("Hello");
 	t_list *list = ft_lstnew(str3);
 	printf("Original printf:\t");
