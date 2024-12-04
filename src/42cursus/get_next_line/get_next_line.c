@@ -6,16 +6,31 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/03 21:04:03 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:51:09 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char *_fill_line()
+/*  */
+//!FIX	malloc(): corrupted top size
+char	*_realloc_remaining(char *remaining, ssize_t start)
+{
+	char	*res_remaining;
+	size_t	len;
+
+	len = ft_strlen(&remaining[start]);
+	res_remaining = (char *)malloc(len * sizeof(char));
+	if (!res_remaining)
+		return (NULL);
+	ft_strlcpy(res_remaining, &remaining[start], len + 1);
+	free(remaining);
+	return (res_remaining);
+}
+
+//TODO char *_fill_line()
 
 /* Reads the next line from the file pointed by FD. */
-//TODO	Reuse *remaining when BUFFER_SIZE is too big
 char	*get_next_line(int fd)
 {
 	char				*line;
@@ -24,8 +39,23 @@ char	*get_next_line(int fd)
 	ssize_t				len;
 	ssize_t				i;
 
-	if (fd < STDIN_FILENO)
+ 	if (fd < STDIN_FILENO)
 		return (NULL);
+	if (remaining)		// check if remaining contains a newline
+	{
+		i = 0;
+		while (remaining[i] && remaining[i] != EOL)
+			i++;
+		if (remaining[i] == EOL)
+		{
+			line = (char *)malloc((i + 1) * sizeof(char));
+			if (!line)
+				return (NULL);
+			ft_strlcpy(line, remaining, i + 2);
+			remaining = _realloc_remaining(remaining, i + 1);
+			return (line);
+		}
+	}
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
@@ -42,7 +72,7 @@ char	*get_next_line(int fd)
 	{
 		remaining = (char *)malloc((len + 1) * sizeof(char));
 		ft_strlcpy(remaining, buffer, i + 1);
-		return (get_next_line(fd));
+		return (free(buffer), get_next_line(fd));
 	}
 	if (i > len)
 	{
@@ -56,7 +86,7 @@ char	*get_next_line(int fd)
 	}
 	line = (char *)malloc((i + 1) * sizeof(char));
 	ft_strlcpy(line, buffer, i + 2);
-	return (line);
+	return (free(buffer), line);
 }
 
 #include <fcntl.h>
@@ -71,7 +101,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	f = open(argv[1], O_RDONLY);
-	while ((line = get_next_line(f)))
+ 	while ((line = get_next_line(f)))
 	{
 		printf("%s", line);
 		free(line);
