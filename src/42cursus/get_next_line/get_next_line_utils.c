@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:54 by sede-san          #+#    #+#             */
-/*   Updated: 2024/11/19 18:07:10 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:01:56 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,43 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	ft_strlcpy(joined, s1, s1_len + 1);
 	ft_strlcpy(&joined[s1_len], s2, s2_len + 1);
 	return (joined);
+}
+
+/* Finds the first ocurrence of C in the string S.  */
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
+}
+
+/* Creates a NULL-terminating copy of the string S from the index START
+   of LEN characters.  */
+char	*ft_substr(const char *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	s_len;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start > s_len)
+	{
+		start = s_len;
+		len = 0;
+	}
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = malloc((sizeof (*substr) * len) + 1);
+	if (!substr)
+		return (NULL);
+	s += start;
+	i = 0;
+	while (len-- && *s && i < s_len)
+		substr[i++] = *s++;
+	substr[i] = '\0';
+	return (substr);
 }

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/03 20:44:56 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:26:43 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 
 # define EOL '\n'
 
-# include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdint.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 
@@ -35,6 +36,7 @@ char	*get_next_line(int fd);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
-
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/04 21:51:09 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:03:45 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 
 /*  */
 //!FIX	malloc(): corrupted top size
-char	*_realloc_remaining(char *remaining, ssize_t start)
+static char	*_realloc_remaining(char *remaining, ssize_t start)
 {
 	char	*res_remaining;
 	size_t	len;
 
 	len = ft_strlen(&remaining[start]);
-	res_remaining = (char *)malloc(len * sizeof(char));
+	// res_remaining = (char *)malloc(len * sizeof(char));
+	// if (!res_remaining)
+	// 	return (NULL);
+	// ft_strlcpy(res_remaining, &remaining[start], len + 1);
+	res_remaining = ft_substr(remaining, start, len);
 	if (!res_remaining)
 		return (NULL);
-	ft_strlcpy(res_remaining, &remaining[start], len + 1);
 	free(remaining);
 	return (res_remaining);
 }
+
+// char	*_realloc_buffer(char *buffer, size_t len)
+// {
+	
+// }
 
 //TODO char *_fill_line()
 
@@ -37,56 +45,40 @@ char	*get_next_line(int fd)
 	static char			*remaining;
 	char				*buffer;
 	ssize_t				len;
-	ssize_t				i;
-
- 	if (fd < STDIN_FILENO)
+	
+	if (fd < STDIN_FILENO)
 		return (NULL);
-	if (remaining)		// check if remaining contains a newline
+	if (remaining && ft_strchr(remaining, EOL))
 	{
-		i = 0;
-		while (remaining[i] && remaining[i] != EOL)
-			i++;
-		if (remaining[i] == EOL)
-		{
-			line = (char *)malloc((i + 1) * sizeof(char));
-			if (!line)
-				return (NULL);
-			ft_strlcpy(line, remaining, i + 2);
-			remaining = _realloc_remaining(remaining, i + 1);
-			return (line);
-		}
+		printf("DEBUG: Entra1\n");
+		len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining + 1;
+		line = ft_substr(remaining, 0, len);
+		remaining = _realloc_remaining(remaining, len);
+		return (line);
 	}
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	len = read(fd, buffer, BUFFER_SIZE);
-	if (len <= 0)
-		return (NULL);
-	buffer[len] = '\0';
-	if (remaining)
-		buffer = ft_strjoin(remaining, buffer);
-	i = 0;
-	while (buffer[i] && buffer[i] != EOL)
-		i++;
-	if (i >= len && buffer[i] != EOL && buffer[i])
+	if (len <= 0 && !remaining)
+		return (free(buffer), NULL);
+	else if (len == 0 && remaining)
 	{
-		remaining = (char *)malloc((len + 1) * sizeof(char));
-		ft_strlcpy(remaining, buffer, i + 1);
-		return (free(buffer), get_next_line(fd));
+		line = ft_substr(remaining, 0, ft_strlen(remaining));
+		remaining = NULL;
+		return (line);
 	}
-	if (i > len)
-	{
-		remaining = (char *)malloc((i - len + 1) * sizeof(char));
-		ft_strlcpy(remaining, &buffer[i + 1], len - i + 1);
-	}
-	else
-	{
-		remaining = (char *)malloc((len - i + 1) * sizeof(char));
-		ft_strlcpy(remaining, &buffer[i + 1], i - len + 1);
-	}
-	line = (char *)malloc((i + 1) * sizeof(char));
-	ft_strlcpy(line, buffer, i + 2);
-	return (free(buffer), line);
+	buffer[len] = 0;
+	if (!remaining)
+		remaining = "";
+	remaining = ft_strjoin(remaining, buffer);
+	free(buffer);
+	if (!(ft_strchr(remaining, EOL)) && !(ft_strchr(remaining, EOF)))
+		return (get_next_line(fd));
+	len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining + 1;
+	line = ft_substr(remaining, 0, len);
+	remaining = _realloc_remaining(remaining, len);
+	return (line);
 }
 
 #include <fcntl.h>
