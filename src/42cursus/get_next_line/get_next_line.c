@@ -6,24 +6,19 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/10 14:03:45 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:17:19 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*  */
-//!FIX	malloc(): corrupted top size
+/* */
 static char	*_realloc_remaining(char *remaining, ssize_t start)
 {
 	char	*res_remaining;
 	size_t	len;
 
 	len = ft_strlen(&remaining[start]);
-	// res_remaining = (char *)malloc(len * sizeof(char));
-	// if (!res_remaining)
-	// 	return (NULL);
-	// ft_strlcpy(res_remaining, &remaining[start], len + 1);
 	res_remaining = ft_substr(remaining, start, len);
 	if (!res_remaining)
 		return (NULL);
@@ -31,9 +26,15 @@ static char	*_realloc_remaining(char *remaining, ssize_t start)
 	return (res_remaining);
 }
 
-// char	*_realloc_buffer(char *buffer, size_t len)
+// static char	*_realloc_line(char *line, size_t len)
 // {
-	
+// 	char	*res_line;
+
+// 	res_line = ft_substr(line, 0, len);
+// 	if (!res_line)
+// 		return (NULL);
+// 	free(line);
+// 	return (res_line);
 // }
 
 //TODO char *_fill_line()
@@ -45,15 +46,14 @@ char	*get_next_line(int fd)
 	static char			*remaining;
 	char				*buffer;
 	ssize_t				len;
-	
+
 	if (fd < STDIN_FILENO)
 		return (NULL);
 	if (remaining && ft_strchr(remaining, EOL))
 	{
-		printf("DEBUG: Entra1\n");
-		len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining + 1;
-		line = ft_substr(remaining, 0, len);
-		remaining = _realloc_remaining(remaining, len);
+		len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining;
+		line = ft_substr(remaining, 0, len + 1);
+		remaining = _realloc_remaining(remaining, len + 1);
 		return (line);
 	}
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -65,19 +65,23 @@ char	*get_next_line(int fd)
 	else if (len == 0 && remaining)
 	{
 		line = ft_substr(remaining, 0, ft_strlen(remaining));
+		free(remaining);
 		remaining = NULL;
-		return (line);
+		return (free(buffer), line);
 	}
-	buffer[len] = 0;
+	buffer[len] = '\0';
 	if (!remaining)
-		remaining = "";
+	{
+		remaining = (char *)malloc(1 * sizeof(char));
+		*remaining = '\0';
+	}
 	remaining = ft_strjoin(remaining, buffer);
 	free(buffer);
-	if (!(ft_strchr(remaining, EOL)) && !(ft_strchr(remaining, EOF)))
+	if (!(ft_strchr(remaining, EOL)))
 		return (get_next_line(fd));
-	len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining + 1;
-	line = ft_substr(remaining, 0, len);
-	remaining = _realloc_remaining(remaining, len);
+	len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining;
+	line = ft_substr(remaining, 0, len + 1);
+	remaining = _realloc_remaining(remaining, len + 1);
 	return (line);
 }
 
