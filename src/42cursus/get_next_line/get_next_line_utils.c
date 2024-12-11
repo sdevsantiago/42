@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:54 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/10 18:24:25 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:37:31 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 /* Appends the NULL-terminated string S1 and the NULL-terminated string S2
    in a new string.  */
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*joined;
 	size_t	s1_len;
