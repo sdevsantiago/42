@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:54 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/11 18:45:28 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:03:18 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*ft_strdup(const char *s)
 	s_dup[i] = '\0';
 	return (s_dup);
 }
-
 
 /* Appends the NULL-terminated string S1 and the NULL-terminated string S2
    in a new string.  */
