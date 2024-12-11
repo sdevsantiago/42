@@ -6,82 +6,76 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/10 18:17:19 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:22:12 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /* */
-static char	*_realloc_remaining(char *remaining, ssize_t start)
+static char	*_realloc_buffer(char *buffer)
 {
-	char	*res_remaining;
-	size_t	len;
+	char		*new_buffer;
+	size_t		len;
+	uintptr_t	i;
 
-	len = ft_strlen(&remaining[start]);
-	res_remaining = ft_substr(remaining, start, len);
-	if (!res_remaining)
-		return (NULL);
-	free(remaining);
-	return (res_remaining);
+	i = (uintptr_t)ft_strchr(buffer, EOL);
+	if (i)
+		i -= (uintptr_t)buffer;
+	len = ft_strlen(&buffer[i]);
+	if (i || buffer[i] == EOL)
+		new_buffer = ft_substr(buffer, i + 1, len + 1);
+	else
+		new_buffer = NULL;
+	free(buffer);
+	return (new_buffer);
 }
 
-// static char	*_realloc_line(char *line, size_t len)
-// {
-// 	char	*res_line;
+/* */
+static char	*_fill_buffer(int fd, char *buffer)
+{
+	char	*buf;
+	ssize_t	len;
 
-// 	res_line = ft_substr(line, 0, len);
-// 	if (!res_line)
-// 		return (NULL);
-// 	free(line);
-// 	return (res_line);
-// }
+	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buf)
+		return (free(buffer), NULL);
+	len = read(fd, buf, BUFFER_SIZE);
+	if (len <= 0)
+		return (free(buf), free(buffer), NULL);
+	buf[len] = '\0';
+	if (!ft_strchr(buf, EOL) && len == BUFFER_SIZE)
+	{
+		buffer = ft_strjoin(buffer, buf);
+		return (free(buf), _fill_buffer(fd, buffer));
+	}
+	buffer = ft_strjoin(buffer, buf);
+	return (free(buf), buffer);
+}
 
-//TODO char *_fill_line()
-
-/* Reads the next line from the file pointed by FD. */
 char	*get_next_line(int fd)
 {
-	char				*line;
-	static char			*remaining;
-	char				*buffer;
-	ssize_t				len;
+	char		*line;
+	static char	*buffer;
+	size_t		len;
 
-	if (fd < STDIN_FILENO)
+	if (fd < STDIN_FILENO || BUFFER_SIZE < 1)
 		return (NULL);
-	if (remaining && ft_strchr(remaining, EOL))
+	if (!buffer)
+		buffer = ft_strdup("");
+	if (ft_strchr(buffer, EOL))
 	{
-		len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining;
-		line = ft_substr(remaining, 0, len + 1);
-		remaining = _realloc_remaining(remaining, len + 1);
+		len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
+		line = ft_substr(buffer, 0, len + 1);
+		buffer = _realloc_buffer(buffer);
 		return (line);
 	}
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = _fill_buffer(fd, buffer);
 	if (!buffer)
-		return (NULL);
-	len = read(fd, buffer, BUFFER_SIZE);
-	if (len <= 0 && !remaining)
 		return (free(buffer), NULL);
-	else if (len == 0 && remaining)
-	{
-		line = ft_substr(remaining, 0, ft_strlen(remaining));
-		free(remaining);
-		remaining = NULL;
-		return (free(buffer), line);
-	}
-	buffer[len] = '\0';
-	if (!remaining)
-	{
-		remaining = (char *)malloc(1 * sizeof(char));
-		*remaining = '\0';
-	}
-	remaining = ft_strjoin(remaining, buffer);
-	free(buffer);
-	if (!(ft_strchr(remaining, EOL)))
-		return (get_next_line(fd));
-	len = (uintptr_t)ft_strchr(remaining, EOL) - (uintptr_t)remaining;
-	line = ft_substr(remaining, 0, len + 1);
-	remaining = _realloc_remaining(remaining, len + 1);
+	len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
+	line = ft_substr(buffer, 0, len + 1);
+	buffer = _realloc_buffer(buffer);
 	return (line);
 }
 
