@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/11 22:22:12 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:26:02 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ static char	*_fill_buffer(int fd, char *buffer)
 		return (free(buffer), NULL);
 	len = read(fd, buf, BUFFER_SIZE);
 	if (len <= 0)
+	{
+		if (buffer)
+			return (free(buf), buffer);
 		return (free(buf), free(buffer), NULL);
+	}
 	buf[len] = '\0';
 	if (!ft_strchr(buf, EOL) && len == BUFFER_SIZE)
 	{
@@ -71,32 +75,10 @@ char	*get_next_line(int fd)
 		return (line);
 	}
 	buffer = _fill_buffer(fd, buffer);
-	if (!buffer)
+	if (!buffer || !*buffer)
 		return (free(buffer), NULL);
 	len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
 	line = ft_substr(buffer, 0, len + 1);
 	buffer = _realloc_buffer(buffer);
 	return (line);
-}
-
-#include <fcntl.h>
-int main(int argc, char **argv)
-{
-	int		f;
-	char*	line;
-
-	if (argc != 2)
-	{
-		printf("ERROR. Invalid number of arguments");
-		return (1);
-	}
-	f = open(argv[1], O_RDONLY);
- 	while ((line = get_next_line(f)))
-	{
-		printf("%s", line);
-		free(line);
-	}
-
-	close(f);
-	return (0);
 }
