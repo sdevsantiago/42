@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/13 21:29:32 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:56:59 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ static void	_del_file_buffer(t_gnl_file **files, int fd, void (*del)(void *))
 
 /* Returns the buffer of a previously read file. If it hasn't been read,
    creates a new node. */
-static char	*_get_file_buffer(t_gnl_file **files, int fd)
+static t_gnl_file	*_get_file_buffer(t_gnl_file **files, int fd)
 {
-	t_gnl_file	*lst;
+	t_gnl_file	*file;
 	t_gnl_file	*new_file;
 
-	lst = *files;
-	while (lst)
+	file = *files;
+	while (file)
 	{
-		if (lst->fd == fd)
-			return (lst->buffer);
-		if (!lst->next)
+		if (file->fd == fd)
+			return (file);
+		if (!file->next)
 			break ;
-		lst = lst->next;
+		file = file->next;
 	}
 	new_file = (t_gnl_file *)malloc(1 * sizeof(t_gnl_file));
 	if (!new_file)
@@ -60,11 +60,11 @@ static char	*_get_file_buffer(t_gnl_file **files, int fd)
 	new_file->fd = fd;
 	new_file->buffer = ft_strdup("");
 	new_file->next = NULL;
-	if (lst)
-		lst->next = new_file;
+	if (file)
+		file->next = new_file;
 	else
 		*files = new_file;
-	return (new_file->buffer);
+	return (new_file);
 }
 
 /* Resizes the buffer removing the line contained. If emptied, the buffer is
@@ -77,8 +77,12 @@ static char	*_realloc_buffer(char *buffer, int fd, t_gnl_file *files)
 
 	i = (uintptr_t)ft_strchr(buffer, EOL);
 	if (i)
+	{
 		i -= (uintptr_t)buffer;
-	len = ft_strlen(&buffer[i]);
+		len = ft_strlen(&buffer[i + 1]);
+	}
+	else
+		len = ft_strlen(buffer);
 	if (i || buffer[i] == EOL)
 		new_buffer = ft_substr(buffer, i + 1, len + 1);
 	else
@@ -86,7 +90,6 @@ static char	*_realloc_buffer(char *buffer, int fd, t_gnl_file *files)
 		new_buffer = NULL;
 		_del_file_buffer(&files, fd, free);
 	}
-	free(buffer);
 	return (new_buffer);
 }
 
@@ -123,25 +126,25 @@ char	*get_next_line(int fd)
 {
     char				*line;
     static t_gnl_file	*files;
-    char				*buffer;
+    t_gnl_file			*file;
     size_t				len;
 
     if (fd < STDIN_FILENO || BUFFER_SIZE < 1)
         return (NULL);
-    buffer = _get_file_buffer(&files, fd);
-	len = (uintptr_t)ft_strchr(buffer, EOL);
+    file = _get_file_buffer(&files, fd);
+	len = (uintptr_t)ft_strchr(file->buffer, EOL);
     if (len)
     {
-        len -= (uintptr_t)buffer;
-        line = ft_substr(buffer, 0, len + 1);
-        buffer = _realloc_buffer(buffer, fd, files);
+        len -= (uintptr_t)file->buffer;
+        line = ft_substr(file->buffer, 0, len + 1);
+        file->buffer = _realloc_buffer(file->buffer, fd, files);
         return (line);
     }
-    buffer = _fill_buffer(fd, buffer);
-    if (!buffer || !*buffer)
+    file->buffer = _fill_buffer(fd, file->buffer);
+    if (!file->buffer || !*file->buffer)
         return (NULL);
-    len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
-    line = ft_substr(buffer, 0, len + 1);
-    buffer = _realloc_buffer(buffer, fd, files);
+    len = (uintptr_t)ft_strchr(file->buffer, EOL) - (uintptr_t)file->buffer;
+    line = ft_substr(file->buffer, 0, len + 1);
+    file->buffer = _realloc_buffer(file->buffer, fd, files);
     return (line);
 }
