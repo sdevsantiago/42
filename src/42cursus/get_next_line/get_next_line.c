@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/12 18:45:37 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:47:27 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!buffer)
 		buffer = ft_strdup("");
-	if (ft_strchr(buffer, EOL))
+	len = (uintptr_t)ft_strchr(buffer, EOL);
+	if (len)
 	{
-		len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
+		len -= (uintptr_t)buffer;
 		line = ft_substr(buffer, 0, len + 1);
 		buffer = _realloc_buffer(buffer);
 		return (line);
