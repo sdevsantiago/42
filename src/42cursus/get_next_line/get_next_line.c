@@ -6,13 +6,14 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/13 21:47:27 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:54:55 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* */
+/* Resizes the buffer removing the line contained. If emptied, the buffer is
+   freed and its node is deleted from the list FILES. */
 static char	*_realloc_buffer(char *buffer)
 {
 	char		*new_buffer;
@@ -31,7 +32,8 @@ static char	*_realloc_buffer(char *buffer)
 	return (new_buffer);
 }
 
-/* */
+/* Fills the buffer until it contains a full line. A complete line is
+   understood to be one that contains an EOL. */
 static char	*_fill_buffer(int fd, char *buffer)
 {
 	char	*buf;
@@ -59,6 +61,8 @@ static char	*_fill_buffer(int fd, char *buffer)
 	return (free(buf), buffer);
 }
 
+/* Reads the next line from the file pointed by FD. If no lines have been read
+   previously, reads the first one. */
 char	*get_next_line(int fd)
 {
 	char		*line;
