@@ -6,14 +6,70 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/12 12:33:07 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:29:32 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-/* */
-static char	*_realloc_buffer(char *buffer)
+/* Deletes the node from the list FILES containing the passed FD with the
+   function DEL. */
+static void	_del_file_buffer(t_gnl_file **files, int fd, void (*del)(void *))
+{
+    t_gnl_file	*lst;
+    t_gnl_file	*prev_file;
+
+    lst = *files;
+	prev_file = NULL;
+    while (lst && lst->fd != fd)
+    {
+        prev_file = lst;
+        lst = lst->next;
+    }
+    if (!lst)
+		return ;
+    if (prev_file)
+        prev_file->next = lst->next;
+    else
+        *files = lst->next;
+    if (lst->buffer)
+        del(lst->buffer);
+    free(lst);
+}
+
+
+/* Returns the buffer of a previously read file. If it hasn't been read,
+   creates a new node. */
+static char	*_get_file_buffer(t_gnl_file **files, int fd)
+{
+	t_gnl_file	*lst;
+	t_gnl_file	*new_file;
+
+	lst = *files;
+	while (lst)
+	{
+		if (lst->fd == fd)
+			return (lst->buffer);
+		if (!lst->next)
+			break ;
+		lst = lst->next;
+	}
+	new_file = (t_gnl_file *)malloc(1 * sizeof(t_gnl_file));
+	if (!new_file)
+		return (NULL);
+	new_file->fd = fd;
+	new_file->buffer = ft_strdup("");
+	new_file->next = NULL;
+	if (lst)
+		lst->next = new_file;
+	else
+		*files = new_file;
+	return (new_file->buffer);
+}
+
+/* Resizes the buffer removing the line contained. If emptied, the buffer is
+   freed and its node is deleted from the list FILES. */
+static char	*_realloc_buffer(char *buffer, int fd, t_gnl_file *files)
 {
 	char		*new_buffer;
 	size_t		len;
@@ -26,12 +82,16 @@ static char	*_realloc_buffer(char *buffer)
 	if (i || buffer[i] == EOL)
 		new_buffer = ft_substr(buffer, i + 1, len + 1);
 	else
+	{
 		new_buffer = NULL;
+		_del_file_buffer(&files, fd, free);
+	}
 	free(buffer);
 	return (new_buffer);
 }
 
-/* */
+/* Fills the buffer until it contains a full line. A complete line is
+   understood to be one that contains an EOL. */
 static char	*_fill_buffer(int fd, char *buffer)
 {
 	char	*buf;
@@ -57,28 +117,31 @@ static char	*_fill_buffer(int fd, char *buffer)
 	return (free(buf), buffer);
 }
 
+/* Reads the next line from the file pointed by FD. If no lines have been read
+   previously, reads the first one. */
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*buffer[MAX_FD];
-	size_t		len;
+    char				*line;
+    static t_gnl_file	*files;
+    char				*buffer;
+    size_t				len;
 
-	if (fd < STDIN_FILENO || BUFFER_SIZE < 1)
-		return (NULL);
-	if (!buffer[fd])
-		buffer[fd] = ft_strdup("");
-	if (ft_strchr(buffer[fd], EOL))
-	{
-		len = (uintptr_t)ft_strchr(buffer[fd], EOL) - (uintptr_t)buffer[fd];
-		line = ft_substr(buffer[fd], 0, len + 1);
-		buffer[fd] = _realloc_buffer(buffer[fd]);
-		return (line);
-	}
-	buffer[fd] = _fill_buffer(fd, buffer[fd]);
-	if (!buffer[fd] || !*buffer[fd])
-		return (free(buffer[fd]), NULL);
-	len = (uintptr_t)ft_strchr(buffer[fd], EOL) - (uintptr_t)buffer;
-	line = ft_substr(buffer[fd], 0, len + 1);
-	buffer[fd] = _realloc_buffer(buffer[fd]);
-	return (line);
+    if (fd < STDIN_FILENO || BUFFER_SIZE < 1)
+        return (NULL);
+    buffer = _get_file_buffer(&files, fd);
+	len = (uintptr_t)ft_strchr(buffer, EOL);
+    if (len)
+    {
+        len -= (uintptr_t)buffer;
+        line = ft_substr(buffer, 0, len + 1);
+        buffer = _realloc_buffer(buffer, fd, files);
+        return (line);
+    }
+    buffer = _fill_buffer(fd, buffer);
+    if (!buffer || !*buffer)
+        return (NULL);
+    len = (uintptr_t)ft_strchr(buffer, EOL) - (uintptr_t)buffer;
+    line = ft_substr(buffer, 0, len + 1);
+    buffer = _realloc_buffer(buffer, fd, files);
+    return (line);
 }
