@@ -6,11 +6,11 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:54 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 14:30:11 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:30:54 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_utils.h"
+#include "get_next_line_bonus.h"
 
 /* Measures a string's length.  */
 size_t	ft_strlen(const char *s)
