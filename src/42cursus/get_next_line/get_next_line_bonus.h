@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 10:50:20 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:47:19 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,18 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 
 /*********************************** Bonus ************************************/
 
-typedef struct s_gnl_file
+// Single linked list structure
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
+// File data structure
+typedef struct	s_file_data
 {
 	int					fd;
 	char				*buffer;
-	struct s_gnl_file	*next;
-}						t_gnl_file;
+}						t_file_data;
 
 #endif
