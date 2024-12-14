@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:34:41 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 11:25:00 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 11:54:38 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 #define RESET "\033[0m"
 #define BOLD "\033[1m"
 #define GREEN_TEXT "\033[32m"
+#define RED_TEXT "\033[31m"
 
 int main(int argc, char **argv)
 {
 	int		f1;
 	int		f2;
 	int		f3;
-	unsigned int c;
+	unsigned int c1;
+	unsigned int c2;
+	unsigned int c3;
 	char*	line;
 
 	if (argc != 4)
@@ -36,42 +39,100 @@ int main(int argc, char **argv)
 	f2 = open(argv[2], O_RDONLY);
 	f3 = open(argv[3], O_RDONLY);
 
-	c = 0;
+	c1 = 0;
 	printf(BOLD GREEN_TEXT"FILE 1\n"RESET);
-	while (c < 10)
+	while (c1 < 10)
 	{
 		line = get_next_line(f1);
 		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
 			break;
-		printf("%s", line);
+		}
+		printf("[%i]:\t%s", ++c1, line);
 		free(line);
-		c++;
 	}
 	printf("\n");
 
-	c = 0;
+	c2 = 0;
 	printf(BOLD GREEN_TEXT"FILE 2\n"RESET);
-	while (c < 10)
+	while (c2 < 10)
 	{
 		line = get_next_line(f2);
 		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
 			break;
-		printf("%s", line);
+		}
+		printf("[%i]:\t%s", ++c2, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
 		free(line);
-		c++;
 	}
 	printf("\n");
 
-	c = 0;
+	c3 = 0;
 	printf(BOLD GREEN_TEXT"FILE 3\n"RESET);
-	while (c < 10)
+	while (c3 < 10)
 	{
 		line = get_next_line(f3);
 		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
 			break;
-		printf("%s", line);
+		}
+		printf("[%i]:\t%s", ++c3, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
 		free(line);
-		c++;
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 1 (AGAIN)\n"RESET);
+	while (c1 < 20)
+	{
+		line = get_next_line(f1);
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c1, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 2 (AGAIN)\n"RESET);
+	while (c2 < 20)
+	{
+		line = get_next_line(f2);
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c2, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 3 (AGAIN)\n"RESET);
+	while (c3 < 20)
+	{
+		line = get_next_line(f3);
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c3, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
 	}
 	printf("\n");
 
