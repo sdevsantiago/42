@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/13 21:54:55 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:31:53 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ static char	*_realloc_buffer(char *buffer)
 
 	i = (uintptr_t)ft_strchr(buffer, EOL);
 	if (i)
+	{
 		i -= (uintptr_t)buffer;
-	len = ft_strlen(&buffer[i]);
+		len = ft_strlen(&buffer[i + 1]);
+	}
+	else
+		len = ft_strlen(buffer);
 	if ((i || buffer[i] == EOL) && buffer[i + 1])
 		new_buffer = ft_substr(buffer, i + 1, len + 1);
 	else
