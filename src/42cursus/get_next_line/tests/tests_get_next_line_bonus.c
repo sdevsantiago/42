@@ -6,12 +6,14 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:34:41 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/12 13:25:04 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:44:50 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next_line_bonus.h"
 #include <fcntl.h>
+#include <stdio.h>
+
 
 int main(int argc, char **argv)
 {

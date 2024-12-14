@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/11 18:59:42 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:43:45 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define EOL '\n'
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdint.h>
 # include <unistd.h>
 

@@ -6,11 +6,12 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:40:18 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/12 17:52:29 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:44:43 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next_line.h"
+#include <stdio.h>
 #include <signal.h>
 
 int main(void)
