@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/16 13:05:52 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:55:01 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ static void	_del_file(t_list **files, int fd)
 }
 
 /* Returns the node of the list FILES that contains the FD passed. If it
-   doesn't exitst, creates a new node for that FD. */
+   doesn't exitst, creates a new node at the beggining of the list for
+   that FD. */
 static t_file_data	*_get_file_data(t_list **files, int fd)
 {
 	t_list	*file;
 	t_list	*new_file;
 
 	file = *files;
-	while (file && file->next)
+	while (file)
 	{
 		if (((t_file_data *)file->content)->fd == fd)
 			return ((t_file_data *)file->content);
-		if (file->next)
-			file = file->next;
+		file = file->next;
 	}
 	new_file = (t_list *)malloc(sizeof(t_list));
 	if (!new_file)
@@ -59,11 +59,8 @@ static t_file_data	*_get_file_data(t_list **files, int fd)
 		return (free(new_file), NULL);
 	((t_file_data *)new_file->content)->fd = fd;
 	((t_file_data *)new_file->content)->buffer = ft_strdup("");
-	new_file->next = NULL;
-	if (*files)
-		file->next = new_file;
-	else
-		*files = new_file;
+	new_file->next = *files;
+	*files = new_file;
 	return (new_file->content);
 }
 
