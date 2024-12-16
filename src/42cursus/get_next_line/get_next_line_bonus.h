@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:59 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 13:47:19 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:03:06 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_list
 }					t_list;
 
 // File data structure
-typedef struct	s_file_data
+typedef struct s_file_data
 {
 	int					fd;
 	char				*buffer;
