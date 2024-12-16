@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 14:59:38 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:05:52 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ static t_file_data	*_get_file_data(t_list **files, int fd)
 	t_list	*new_file;
 
 	file = *files;
-	while (file)
+	while (file && file->next)
 	{
 		if (((t_file_data *)file->content)->fd == fd)
 			return ((t_file_data *)file->content);
-		file = file->next;
+		if (file->next)
+			file = file->next;
 	}
 	new_file = (t_list *)malloc(sizeof(t_list));
 	if (!new_file)
@@ -57,7 +58,7 @@ static t_file_data	*_get_file_data(t_list **files, int fd)
 	if (!new_file->content)
 		return (free(new_file), NULL);
 	((t_file_data *)new_file->content)->fd = fd;
-	((t_file_data *)new_file->content)->buffer = ft_strdup("");					// TODO: test functionality with NULL string, if it works, remove ft_strdup
+	((t_file_data *)new_file->content)->buffer = ft_strdup("");
 	new_file->next = NULL;
 	if (*files)
 		file->next = new_file;
@@ -95,7 +96,7 @@ static char	*_realloc_buffer(char *buffer, int fd, t_list *files)
    understood to be one that contains an EOL. */
 static char	*_fill_buffer(int fd, char *buffer)
 {
-	char	*buf;																//TODO: test leaks with buf in stack
+	char	*buf;
 	ssize_t	len;
 
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
