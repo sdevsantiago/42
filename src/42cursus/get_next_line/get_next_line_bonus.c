@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/16 22:56:37 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:28:59 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,15 @@ static char	*_realloc_buffer(char *buffer)
 	}
 	else
 		len = ft_strlen(buffer);
-	if (i || buffer[i] == EOL)
+	if (i)
+	{
 		new_buffer = ft_substr(buffer, i + 1, len + 1);
+		if (!ft_strlen(new_buffer))
+		{
+			free(new_buffer);
+			new_buffer = NULL;
+		}
+	}
 	else
 		new_buffer = NULL;
 	free(buffer);
