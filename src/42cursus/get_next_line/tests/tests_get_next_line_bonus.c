@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:34:41 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/14 11:54:38 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:36:04 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,51 @@ int main(int argc, char **argv)
 	while (c3 < 20)
 	{
 		line = get_next_line(f3);
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c3, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 1 (REST OF FILE)\n"RESET);
+	while (line = get_next_line(f1))
+	{
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c1, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 2 (REST OF FILE)\n"RESET);
+	while (line = get_next_line(f2))
+	{
+		if (!line)
+		{
+			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
+			break;
+		}
+		printf("[%i]:\t%s", ++c2, line);
+		if (!ft_strchr(line, EOL))
+			printf("\n");
+		free(line);
+	}
+	printf("\n");
+
+	printf(BOLD GREEN_TEXT"FILE 3 (REST OF FILE)\n"RESET);
+	while (line = get_next_line(f3))
+	{
 		if (!line)
 		{
 			printf(BOLD RED_TEXT"NO LINE RETURNED"RESET"\n");
