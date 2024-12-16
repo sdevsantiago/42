@@ -6,7 +6,7 @@
 /*   By: sede-san <sede-san@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:58:57 by sede-san          #+#    #+#             */
-/*   Updated: 2024/12/16 17:55:01 by sede-san         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:56:37 by sede-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 /* Deletes the node from the list FILES containing the passed FD. */
 static void	_del_file(t_list **files, int fd)
 {
-	t_list	*lst;
+	t_list	*del_file;
 	t_list	*prev_file;
 
-	lst = *files;
+	del_file = *files;
 	prev_file = NULL;
-	while (lst && ((t_file_data *)lst->content)->fd != fd)
+	while (((t_file_data *)del_file->content)->fd != fd)
 	{
-		prev_file = lst;
-		lst = lst->next;
+		prev_file = del_file;
+		del_file = del_file->next;
 	}
-	if (!lst)
-		return ;
-	if (prev_file)
-		prev_file->next = lst->next;
+	if (!prev_file)
+		*files = del_file->next;
 	else
-		*files = lst->next;
-	free(((t_file_data *)lst->content)->buffer);
-	free(lst->content);
-	free(lst);
+		prev_file->next = del_file->next;
+	if (!*files)
+		*files = NULL;
+	free(((t_file_data *)del_file->content)->buffer);
+	free(del_file->content);
+	free(del_file);
 }
 
 /* Returns the node of the list FILES that contains the FD passed. If it
@@ -59,13 +59,15 @@ static t_file_data	*_get_file_data(t_list **files, int fd)
 		return (free(new_file), NULL);
 	((t_file_data *)new_file->content)->fd = fd;
 	((t_file_data *)new_file->content)->buffer = ft_strdup("");
+	if (!((t_file_data *)new_file->content)->buffer)
+		return (free((t_file_data *)new_file->content), free(new_file), NULL);
 	new_file->next = *files;
 	*files = new_file;
 	return (new_file->content);
 }
 
 /* Resizes the buffer removing the line contained. */
-static char	*_realloc_buffer(char *buffer, int fd, t_list *files)
+static char	*_realloc_buffer(char *buffer)
 {
 	char		*new_buffer;
 	size_t		len;
@@ -82,10 +84,8 @@ static char	*_realloc_buffer(char *buffer, int fd, t_list *files)
 	if (i || buffer[i] == EOL)
 		new_buffer = ft_substr(buffer, i + 1, len + 1);
 	else
-	{
 		new_buffer = NULL;
-		_del_file(&files, fd);
-	}
+	free(buffer);
 	return (new_buffer);
 }
 
@@ -102,7 +102,7 @@ static char	*_fill_buffer(int fd, char *buffer)
 	len = read(fd, buf, BUFFER_SIZE);
 	if (len <= 0)
 	{
-		if (buffer)
+		if (*buffer)
 			return (free(buf), buffer);
 		return (free(buf), free(buffer), NULL);
 	}
@@ -135,14 +135,16 @@ char	*get_next_line(int fd)
 	{
 		len -= (size_t)file->buffer;
 		line = ft_substr(file->buffer, 0, len + 1);
-		file->buffer = _realloc_buffer(file->buffer, fd, files);
+		file->buffer = _realloc_buffer(file->buffer);
 		return (line);
 	}
 	file->buffer = _fill_buffer(fd, file->buffer);
 	if (!file->buffer || !*file->buffer)
-		return (NULL);
+		return (_del_file(&files, fd), NULL);
 	len = ft_strchr(file->buffer, EOL) - file->buffer;
 	line = ft_substr(file->buffer, 0, len + 1);
-	file->buffer = _realloc_buffer(file->buffer, fd, files);
+	file->buffer = _realloc_buffer(file->buffer);
+	if (!file->buffer)
+		_del_file(&files, fd);
 	return (line);
 }
