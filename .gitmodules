@@ -1,0 +1,12 @@
+[submodule "Libft"]
+	path = Libft
+	url = git@github.com:sdevsantiago/Libft.git
+[submodule "C-Pisicine"]
+	path = C-Pisicine
+	url = git@github.com:sdevsantiago/C-Pisicine.git
+[submodule "get_next_line"]
+	path = get_next_line
+	url = git@github.com:sdevsantiago/get_next_line.git
+[submodule "ft_printf"]
+	path = ft_printf
+	url = git@github.com:sdevsantiago/ft_printf.git
