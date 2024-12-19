@@ -13,7 +13,9 @@
                 "-Wall",
                 "-Wextra",
                 "-Werror",
-                "ft_strlen.c",                
+                "-D BUFFER_SIZE=2",
+                "tests/tests_get_next_line_bonus.c",
+                "get_next_line_utils_bonus.c",
             ],
             "options": {
                 "cwd": "${fileDirname}"
