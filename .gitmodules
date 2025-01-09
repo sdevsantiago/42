@@ -13,3 +13,6 @@
 [submodule "Fdf"]
 	path = Fdf
 	url = git@github.com:sdevsantiago/Fdf.git
+[submodule "Born2beroot"]
+	path = Born2beroot
+	url = https://github.com/sdevsantiago/Born2beroot
