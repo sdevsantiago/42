@@ -16,3 +16,9 @@
 [submodule "Born2beroot"]
 	path = Born2beroot
 	url = https://github.com/sdevsantiago/Born2beroot
+[submodule "push_swap"]
+	path = push_swap
+	url = git@github.com:sdevsantiago/push_swap.git
+[submodule "minitalk"]
+	path = minitalk
+	url = git@github.com:sdevsantiago/minitalk.git
