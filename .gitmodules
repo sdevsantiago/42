@@ -22,3 +22,6 @@
 [submodule "minitalk"]
 	path = minitalk
 	url = git@github.com:sdevsantiago/minitalk.git
+[submodule "avalanche-42"]
+	path = avalanche-42
+	url = git@github.com:sdevsantiago/avalanche-42
