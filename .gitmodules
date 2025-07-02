@@ -1,6 +1,3 @@
-[submodule "Libft"]
-	path = Libft
-	url = git@github.com:sdevsantiago/Libft.git
 [submodule "C-Pisicine"]
 	path = C-Pisicine
 	url = git@github.com:sdevsantiago/C-Pisicine.git
@@ -25,3 +22,6 @@
 [submodule "avalanche-42"]
 	path = avalanche-42
 	url = git@github.com:sdevsantiago/avalanche-42
+[submodule "Libft"]
+	path = Libft
+	url = git@github.com:sdevsantiago/Libft.git
