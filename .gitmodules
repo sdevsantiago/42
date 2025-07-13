@@ -7,9 +7,6 @@
 [submodule "ft_printf"]
 	path = ft_printf
 	url = git@github.com:sdevsantiago/ft_printf.git
-[submodule "Fdf"]
-	path = Fdf
-	url = git@github.com:sdevsantiago/Fdf.git
 [submodule "Born2beroot"]
 	path = Born2beroot
 	url = https://github.com/sdevsantiago/Born2beroot
@@ -25,3 +22,6 @@
 [submodule "Libft"]
 	path = Libft
 	url = git@github.com:sdevsantiago/Libft.git
+[submodule "FdF"]
+	path = FdF
+	url = git@github.com:sdevsantiago/FdF.git
