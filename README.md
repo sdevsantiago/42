@@ -52,7 +52,7 @@ Once cloned, install it's requirements with `pip install -r requirements.txt`. A
 [![k11q/mini-moulinette - GitHub](https://gh-card.dev/repos/k11q/mini-moulinette.svg?fullname=)](https://github.com/k11q/mini-moulinette)
 
 ## ⚙️ Project information
-![Status](https://img.shields.io/badge/Status-Freeze-blue?style=for-the-badge&labelColor=black)
+![Status](https://img.shields.io/badge/Status-Active-green?style=for-the-badge&labelColor=black)
 
 ![GitHub Created At](https://img.shields.io/github/created-at/sdevsantiago/42?style=for-the-badge&labelColor=black)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sdevsantiago/42?display_timestamp=committer&style=for-the-badge&labelColor=black)
