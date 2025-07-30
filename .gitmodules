@@ -25,3 +25,6 @@
 [submodule "FdF"]
 	path = FdF
 	url = git@github.com:sdevsantiago/FdF.git
+[submodule "42_project_template"]
+	path = 42_project_template
+	url = git@github.com:sdevsantiago/42_project_template.git
