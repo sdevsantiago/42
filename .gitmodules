@@ -28,3 +28,9 @@
 [submodule "42_project_template"]
 	path = 42_project_template
 	url = git@github.com:sdevsantiago/42_project_template.git
+[submodule "minishell"]
+	path = minishell
+	url = git@github.com:sdevsantiago/minishell.git
+[submodule "Philosophers"]
+	path = Philosophers
+	url = git@github.com:sdevsantiago/Philosophers.git
