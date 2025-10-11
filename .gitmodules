@@ -9,7 +9,7 @@
 	url = git@github.com:sdevsantiago/ft_printf.git
 [submodule "Born2beroot"]
 	path = Born2beroot
-	url = https://github.com/sdevsantiago/Born2beroot
+	url = git@github.com:sdevsantiago/Born2beroot.git
 [submodule "push_swap"]
 	path = push_swap
 	url = git@github.com:sdevsantiago/push_swap.git
