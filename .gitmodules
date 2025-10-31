@@ -31,3 +31,6 @@
 [submodule "Philosophers"]
 	path = Philosophers
 	url = git@github.com:sdevsantiago/Philosophers.git
+[submodule "ft_args"]
+	path = ft_args
+	url = git@github.com:sdevsantiago/ft_args.git
