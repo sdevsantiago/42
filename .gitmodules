@@ -37,3 +37,6 @@
 [submodule "NetPractice"]
 	path = NetPractice
 	url = git@github.com:sdevsantiago/NetPractice
+[submodule "CPP_Modules"]
+	path = CPP_Modules
+	url = git@github.com:sdevsantiago/CPP_Modules
